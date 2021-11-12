@@ -1,0 +1,13 @@
+body {
+    font-family: 'Times New Roman', serif;
+}
+img {
+    text-align: center;
+}
+a, a:visited {
+    font-weight: bold;
+    color: #0000CC;
+}
+li {
+    font-style: italic;
+}
