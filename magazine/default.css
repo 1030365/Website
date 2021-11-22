@@ -1,10 +1,14 @@
 body {
     font-family: 'Times New Roman', serif;
-    background-color: #AAFFBB;
+    background-color: #9FB1D6;
 }
 a, a:visited {
     font-weight: bold;
     color: #0000CC;
+    text-decoration: none;
+}
+img {
+    border: 8px outset #8897b8;
 }
 li {
     font-style: italic;
