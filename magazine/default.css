@@ -13,3 +13,6 @@ img {
 li {
     font-style: italic;
 }
+h1 {
+    border: 4px ridge #5470b3;
+}
