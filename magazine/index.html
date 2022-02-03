@@ -24,12 +24,17 @@
                         <p><a href="headlines.html"><img src="images/SoraSmash.png" height="200" alt="SoraSmash"></a><a href="friday.html"><img src="images/Fog.jpeg" height="200" alt="Fog"></a><a href="newstuff.html"><img src="images/Metroid.png" height="200" alt="Metroid Dread"></a></p>
                     </marquee>
 </div> -->
-		<footer style="text-align: center;">
-                        <a href="http://validator.w3.org/check?uri=https://1030365.github.io/website/magazine">
-                                <strong> HTML </strong> Valid! </a>
-                        <a href="http://jigsaw.w3.org/css-validator/validator?uri=https://1030365.github.io/website/magazine/&profile=css3">
-                            <strong> CSS </strong> Valid! </a>
-                </footer>
+            <footer style="text-align: center;">
+                <a id="vLink1"><strong> HTML </strong> Valid! </a> |
+                <a id="vLink2"><strong> CSS </strong> Valid! </a>
+            </footer>
+            <script>
+                var loc = window.location.href;
+                var HTMLvalidatorLinkStr = 'http://validator.w3.org/check?uri=' + loc;
+                var CSSvalidatorLinkStr = 'http://jigsaw.w3.org/css-validator/validator?uri=' + loc + '?profile=css3';
+                document.getElementById("vLink1").setAttribute("href", HTMLvalidatorLinkStr);
+                document.getElementById("vLink2").setAttribute("href", CSSvalidatorLinkStr);
+            </script>
                 <!-- content ends above here -->
 	</body>
 </html>
