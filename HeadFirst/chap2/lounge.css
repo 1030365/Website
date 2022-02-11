@@ -16,3 +16,12 @@ h2 {
 footer {
     border-bottom: 1px solid black;
 }
+p.greentea {
+    color: green;
+}
+p.raspberry {
+    color: blue;
+}
+p.blueberry {
+    color: purple;
+}
