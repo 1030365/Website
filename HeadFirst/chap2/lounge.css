@@ -13,6 +13,9 @@ h1, h2 {
 h2 {
     text-align: left;
 }
+em {
+    font-style: serif;
+}
 footer {
     border-bottom: 1px solid black;
 }
