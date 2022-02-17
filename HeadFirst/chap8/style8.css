@@ -9,4 +9,6 @@ body {
 h1 {
     font-family: "Emblema One", sans-serif;
 }
-
+h2 {
+    font-size: 1.2em;
+}
