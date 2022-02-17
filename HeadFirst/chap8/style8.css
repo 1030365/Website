@@ -10,10 +10,12 @@ body {
 h1 {
     font-family: "Emblema One", sans-serif;
     font-size: 220%;
+    color: rgb(255, 43, 43);
 }
 h2 {
     font-size: 1.2em;
     font-weight: normal;
+    text-decoration: underline;
 }
 #smol {
     font-size: small;
