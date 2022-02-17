@@ -17,6 +17,9 @@ h2 {
     font-weight: normal;
     text-decoration: underline;
 }
+h1, h2 {
+    border-bottom: thin dotted #414b73;
+}
 #smol {
     font-size: small;
     font-style: italic;
