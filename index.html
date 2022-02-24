@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="text/javascript">
+    function init() {
+            var newLinks = ["<a href='magazine/blog.html'>See Updated Blog!</a>","<a href='https://github.com/1030365/website/blob/main/index.html'>See Javascript for this page!</a>"];
+        var oldLinks = ["<a href='magazine/index.html'>GameFodder Magazine</a>", "<a href='HeadFirst/index.html'>Head First HTML/CSS</a>","<a href='gdw/index.html'>Getting Down with HTML/CSS Lessons</a>", "<a href='HeadFirst/trip2webville.html'>Trip 2 webville</a>"];
+        for (let x of newLinks) {
+            document.getElementById("newList").innerHTML+="<li>"+x+"</li>";
+            }
+        for (let x of oldLinks) {
+                document.getElementById("oldList").innerHTML+="<li>"+x+"</li>";
+            }
+        }    
+</script>
 <style>
 body {
      margin: 40px;
@@ -16,16 +28,12 @@ body {
 that will not effect its appearence when rendered. ~ JE
 -->
 </head>
-<body>
+<body onload="init()">
 <h1>My New Home Page in HTML!</h1>
 <h2>What's new?</h2>
-<a href="magazine/blog.html">See Updated Blog!</a>
-<ul id="oldlinks">
-    <li><a href="gdw/index.html">Getting Down with HTML/CSS Lessons</a></li>
-    <li><a href="magazine/index.html">GameFodder Magazine</a></li>
-    <li><a href="HeadFirst/index.html">Head First HTML/CSS</a></li>
-    <li><a href="HeadFirst/trip2webville.html">Trip 2 webville</a></li>
-</ul>
+<ul id="newList"></ul>
+<h3>Previous work</h3>
+<ul id="oldList"></ul>
 <h2>Portfolio</h2>
 <a href="resume/index.html">My Resume</a>
 <h2><i>Experiments and Mini-projects.</i></h2>
