@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type="text/javascript">
-    var newLinks = ["",""];
-    var oldLinks = [""gdw/index.html,""];
-    for let x of newLinks{
-        document.getElementById("newlist").innerHTML+="<li>"+x+"<li>";
-        for let x of oldLinks{
-                document.getElementById("oldList").innerHTML+="<li>"+x+"</li>";
-            }
-            document.getElementById("oldLinks").innerHTML="";
-        }
-</script>
 <style>
 body {
      margin: 40px;
@@ -30,8 +19,11 @@ that will not effect its appearence when rendered. ~ JE
 <body>
 <h1>My New Home Page in HTML!</h1>
 <ul id="oldlinks">
+    <li><a href="gdw/index.html">Getting Down with HTML/CSS Lessons</a></li>
+    <li><a href="magazine/index.html">GameFodder Magazine</a></li>
+    <li><a href="HeadFirst/index.html">Head First HTML/CSS</a></li>
+    <li><a href="HeadFirst/trip2webville.html">Trip 2 webville</a></li>
 </ul>
-
 <h2>Portfolio</h2>
 <a href="resume/index.html">My Resume</a>
 <h2><i>Experiments and Mini-projects.</i></h2>
