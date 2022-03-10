@@ -14,7 +14,7 @@ console.log(`${numA} + ${numB} = ${numA+numB}`);
 
 console.log('Hello World!');
 
-human.name = 'Luigi';
-human.favColor = 'green';
+human.name = 'Luigi'; // dot notation
+human['favColor'] = 'green'; // bracket notation
 console.log(human);
 console.log(`${human.name} really likes the color ${human.favColor}!`);
