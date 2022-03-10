@@ -45,4 +45,4 @@ console.log(`${human.name} really likes the color ${human.favColor}!`);
 
 let testnum = 8.7;
 console.log(`testnum = ${testnum}`);
-console.log(floor(testnum));
+console.log(`floor(testnum) = ${floor(testnum)}`);
