@@ -4,6 +4,12 @@ function triangleFinder(sides) {
     let a = sides[0]*sides[1]*0.5;
     return [c,p,a];
 }
+function floor(num) {
+    if (Math.round(num) <= num) {
+        return Math.round(num);
+    }
+    return Math.round(num)-1;
+}
 
 let human = {
     name: 'Doug',
@@ -36,3 +42,7 @@ human.name = 'Luigi'; // dot notation
 human['favColor'] = 'green'; // bracket notation
 console.log(human);
 console.log(`${human.name} really likes the color ${human.favColor}!`);
+
+let testnum = 8.7;
+console.log(`testnum = ${testnum}`);
+console.log(floor(testnum));
