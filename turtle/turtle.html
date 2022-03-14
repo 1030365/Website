@@ -3,10 +3,15 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Turtle</title>
+<style>
+article, aside, figure, footer, header, hgroup, menu, nav, section { display: block; }
+  canvas {border: 1px dotted #564b47;}
+</style>
 	</head>
 	<body>
 		<!-- content starts below here -->
                 <h1>Turtle</h1>
+                <canvas id="myDrawing" width="600" height="300"></canvas>
     <footer style="text-align: center;">
         <a href="index.html">Return To Index</a>
     </footer>
@@ -14,6 +19,7 @@
     <a id="vLink1"><strong> HTML </strong> Valid! </a>
     <a id="vLink2"><strong> CSS </strong> Valid! </a>
     </footer>
+    <script type="text/javascript" src="turtle.js"></script>
     <script>
     var loc = window.location.href;
     var HTMLvalidatorLinkStr = 'http://validator.w3.org/check?uri=' + loc;

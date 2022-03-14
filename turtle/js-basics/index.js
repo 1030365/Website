@@ -11,6 +11,11 @@ function floor(num) {
     return Math.round(num)-1;
 }
 
+function length(num) {
+    return floor(Math.log(num)/Math.log(10))+1;
+}
+
+
 let human = {
     name: 'Doug',
     favColor: 'blue'
@@ -46,3 +51,8 @@ console.log(`${human.name} really likes the color ${human.favColor}!`);
 let testnum = 8.7;
 console.log(`testnum = ${testnum}`);
 console.log(`floor(testnum) = ${floor(testnum)}`);
+
+testnum = 87402;
+console.log(`testnum = ${testnum}`);
+console.log(`length(testnum) = ${length(testnum)}`);
+
