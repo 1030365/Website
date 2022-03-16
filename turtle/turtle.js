@@ -102,7 +102,12 @@ turtle.circle = function(theAngle) {
     }
 }
 
-
+turtle.spiral = function(loops) {
+    for (i=1; i<=360*loops; i++) {
+        turtle.forward(i/360);
+        turtle.left(1);
+    }
+}
  
 turtle.hexagon = function(length) {  
     for (i=1; i <= 6; i++) {
@@ -157,3 +162,8 @@ turtle.y = 100;
 turtle.penDown = true;
   
 turtle.circle(1); 
+turtle.penDown = false;
+turtle.x = 180;
+turtle.y = 200;
+turtle.penDown = true;
+turtle.spiral(2);
