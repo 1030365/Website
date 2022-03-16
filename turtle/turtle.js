@@ -95,6 +95,14 @@ turtle.drawArrow = function() {
       turtle.left(150);
   }  
 
+turtle.circle = function(theAngle) {
+    for (i=0; i < (360/theAngle); i++) {
+        turtle.forward(1);
+        turtle.left(theAngle);
+    }
+}
+
+
  
 turtle.hexagon = function(length) {  
     for (i=1; i <= 6; i++) {
@@ -148,34 +156,4 @@ turtle.x = 50;
 turtle.y = 100;
 turtle.penDown = true;
   
-turtle.drawArrow();  
-turtle.penColor = color.red;
-turtle.hexagon(50);
-
-turtle.penDown = false;  
-turtle.left(90);  
-turtle.forward(120);   
-turtle.right(90);  
-turtle.penDown = true;  
-
-turtle.penColor = color.yellow;  
-turtle.drawStar();    
-    
-turtle.x = 180;
-turtle.y = 200;
-turtle.lineWidth = 6;  
-turtle.penColor = color.green;
-turtle.square(50);  
-      
-turtle.x = 350;
-turtle.y = 150;
-turtle.lineWidth = 1;
-turtle.penColor = color.blue;
-turtle.figure3(6,60);  
-
-turtle.x = 450;
-turtle.y = 150;
-turtle.penColor = color.fuchsia;
-turtle.lineWidth = 2;
-turtle.figure4(8,45, turtle.drawArrow);  
-  
+turtle.circle(1); 
