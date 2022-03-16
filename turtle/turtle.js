@@ -117,6 +117,12 @@ turtle.hexagon = function(length) {
     }
   }
   
+turtle.polygon = function(length, sides) {
+    for (i=0; i<sides; i++) {
+        turtle.forward(length);
+        turtle.left(360/sides);
+    }
+}
   
  turtle.drawStar = function() {  
     for (i=0; i < 18; i++) {
@@ -167,3 +173,8 @@ turtle.x = 180;
 turtle.y = 200;
 turtle.penDown = true;
 turtle.spiral(2);
+turtle.penDown = false;
+turtle.x = 400;
+turtle.y = 150;
+turtle.penDown = true;
+turtle.polygon(50,5);
