@@ -73,7 +73,13 @@ turtle.forward = function(length) {
      return this.angleInRadians * 180.0 / Math.PI; 
  }
 
-   
+turtle.jumpTo = function(newX, newY, penLanding) {
+    turtle.penDown = false;
+    turtle.x = newX;
+    turtle.y = newY;
+    turtle.penDown = penLanding;
+}
+
 
   
 // =====================================================================================
@@ -163,18 +169,14 @@ turtle.figure4 = function(count, angle, fn) {
 // Using the example definitions
 // =====================================================================================
   
-turtle.x = 50;
-turtle.y = 100;
-turtle.penDown = true;
+turtle.jumpTo(50,100,true);
   
 turtle.circle(1); 
-turtle.penDown = false;
-turtle.x = 180;
-turtle.y = 200;
-turtle.penDown = true;
+
+turtle.jumpTo(180,200,true);
+
 turtle.spiral(2);
-turtle.penDown = false;
-turtle.x = 400;
-turtle.y = 150;
-turtle.penDown = true;
+
+turtle.jumpTo(400,150,true);
+
 turtle.polygon(50,5);
