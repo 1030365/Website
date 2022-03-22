@@ -119,25 +119,26 @@ turtle.box = function(AcornerX, AcornerY, BcornerX, BcornerY) {
     }
 }
 
-/*turtle.shade = function(cornerX, cornerY, cornerA, cornerB) {
+turtle.shade = function(cornerX, cornerY, cornerA, cornerB) {
+    let jumpHeight = Math.sign(cornerY-cornerB); 
+    let distance = cornerA - cornerX;
     turtle.jumpTo(cornerX, cornerY, true);
     turtle.turnTo(0);
-    let distance = cornerB-cornerX;
-    for (i=0; i<20; i++) {
+    for (i=0; i < Math.round((cornerB-cornerY)/2); i++) {
         turtle.forward(distance);
-        turtle.turnTo(90);
+        turtle.left(90);
         turtle.penDown = false;
-        turtle.forward(1);
+        turtle.forward(jumpHeight);
+        turtle.left(90);
         turtle.penDown = true;
-        turtle.turnTo(180);
         turtle.forward(distance);
-        turtle.turnTo(90);
+        turtle.right(90);
         turtle.penDown = false;
-        turtle.forward(1);
+        turtle.forward(jumpHeight);
+        turtle.right(90);
         turtle.penDown = true;
-        turtle.turnTo(0);
     }
-}*/
+}
 
 
 turtle.circle = function(theAngle) {
@@ -223,7 +224,7 @@ turtle.forward(20);
 
 turtle.jumpTo(300,250,true);
 
-turtle.box(40,40,120,80);
+turtle.shade(20,40,120,80);
 turtle.jumpTo(120,80,true);
 turtle.turnTo(0);
 turtle.forward(50);
