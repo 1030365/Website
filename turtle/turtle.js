@@ -73,7 +73,7 @@ turtle.forward = function(length) {
      return this.angleInRadians * 180.0 / Math.PI; 
  }
 
-turtle.jumpTo = function(newX, newY, penLanding) {
+turtle.jumpTo = function(newX, newY, penLanding = false) {
     turtle.penDown = false;
     turtle.x = newX;
     turtle.y = newY;
@@ -173,7 +173,7 @@ turtle.jumpTo(50,100,true);
   
 turtle.circle(1); 
 
-turtle.jumpTo(180,200,true);
+turtle.jumpTo(180,200);
 
 turtle.spiral(2);
 
