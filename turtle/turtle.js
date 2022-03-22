@@ -106,6 +106,40 @@ turtle.drawArrow = function() {
       turtle.left(150);
   }  
 
+turtle.box = function(AcornerX, AcornerY, BcornerX, BcornerY) {
+    let width = BcornerX-AcornerX;
+    let height = BcornerY-AcornerY;
+    turtle.jumpTo(AcornerX, AcornerY, true);
+    turtle.turnTo(0);
+    for (i=0; i<2; i++) {
+        turtle.forward(width);
+        turtle.right(90);
+        turtle.forward(height);
+        turtle.right(90);
+    }
+}
+
+/*turtle.shade = function(cornerX, cornerY, cornerA, cornerB) {
+    turtle.jumpTo(cornerX, cornerY, true);
+    turtle.turnTo(0);
+    let distance = cornerB-cornerX;
+    for (i=0; i<20; i++) {
+        turtle.forward(distance);
+        turtle.turnTo(90);
+        turtle.penDown = false;
+        turtle.forward(1);
+        turtle.penDown = true;
+        turtle.turnTo(180);
+        turtle.forward(distance);
+        turtle.turnTo(90);
+        turtle.penDown = false;
+        turtle.forward(1);
+        turtle.penDown = true;
+        turtle.turnTo(0);
+    }
+}*/
+
+
 turtle.circle = function(theAngle) {
     for (i=0; i < (360/theAngle); i++) {
         turtle.forward(1);
@@ -189,4 +223,7 @@ turtle.forward(20);
 
 turtle.jumpTo(300,250,true);
 
-turtle.polygon(50,5);
+turtle.box(40,40,120,80);
+turtle.jumpTo(120,80,true);
+turtle.turnTo(0);
+turtle.forward(50);
