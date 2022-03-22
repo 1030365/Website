@@ -80,6 +80,11 @@ turtle.jumpTo = function(newX, newY, penLanding = false) {
     turtle.penDown = penLanding;
 }
 
+turtle.turnTo = function(degree) {
+    turtle.left(degree-turtle.angle()+90);
+}
+
+
 
   
 // =====================================================================================
@@ -178,5 +183,10 @@ turtle.jumpTo(180,200);
 turtle.spiral(2);
 
 turtle.jumpTo(400,150,true);
+
+turtle.turnTo(30);
+turtle.forward(20);
+
+turtle.jumpTo(300,250,true);
 
 turtle.polygon(50,5);
