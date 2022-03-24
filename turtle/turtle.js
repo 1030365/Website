@@ -84,6 +84,17 @@ turtle.turnTo = function(degree) {
     turtle.left(degree-turtle.angle()+90);
 }
 
+turtle.face = function(pointX, pointY) {
+    let dx = pointX-turtle.x;
+    let dy = pointY-turtle.y;
+    let slope = dy/dx;
+    let newAngle = Math.atan(slope) * 180 / Math.PI;
+    turtle.turnTo(-newAngle);
+    if (pointX<turtle.x) {
+        turtle.left(180);
+    }
+    console.log(newAngle);
+}
 
 
   
@@ -228,3 +239,7 @@ turtle.shade(20,40,120,80);
 turtle.jumpTo(120,80,true);
 turtle.turnTo(0);
 turtle.forward(50);
+turtle.face(120,40);
+turtle.forward(100);
+turtle.face(120,80);
+turtle.forward(100);
