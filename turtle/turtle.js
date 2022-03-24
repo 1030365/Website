@@ -80,6 +80,16 @@ turtle.jumpTo = function(newX, newY, penLanding = false) {
     turtle.penDown = penLanding;
 }
 
+turtle.slideTo = function(newX, newY, penLanding = true) {
+    turtle.penDown = true;
+    let Asquared = Math.pow(newX-turtle.x,2);
+    let Bsquared = Math.pow(newY-turtle.y,2);
+    let C = Math.pow(Asquared+Bsquared,0.5);
+    turtle.face(newX, newY);
+    turtle.forward(C);
+    turtle.penDown = penLanding;
+}
+
 turtle.turnTo = function(degree) {
     turtle.left(degree-turtle.angle()+90);
 }
@@ -236,11 +246,6 @@ turtle.jumpTo(180,200);
 
 turtle.spiral(2);
 
-turtle.jumpTo(400,150,true);
-
-turtle.turnTo(30);
-turtle.forward(20);
-
 turtle.jumpTo(300,250,true);
 
 turtle.shade(20,40,120,80);
@@ -253,3 +258,11 @@ turtle.face(120,80);
 turtle.forward(100);
 turtle.jumpTo(300,100,true);
 turtle.shadeCircle(80);
+turtle.jumpTo(400,150,true);
+turtle.shadeCircle(5);
+turtle.slideTo(450,100,true);
+turtle.shadeCircle(5);
+turtle.slideTo(500,200,true);
+turtle.shadeCircle(5);
+turtle.slideTo(400,150,true);
+
