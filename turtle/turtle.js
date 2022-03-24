@@ -151,6 +151,14 @@ turtle.shade = function(cornerX, cornerY, cornerA, cornerB) {
     }
 }
 
+turtle.shadeCircle = function(radius) {
+    for (i=0; i<360; i++) {
+        turtle.forward(radius);
+        turtle.left(180);
+        turtle.forward(radius);
+        turtle.left(179);
+    }
+}
 
 turtle.circle = function(theAngle) {
     for (i=0; i < (360/theAngle); i++) {
@@ -243,3 +251,5 @@ turtle.face(120,40);
 turtle.forward(100);
 turtle.face(120,80);
 turtle.forward(100);
+turtle.jumpTo(300,100,true);
+turtle.shadeCircle(80);
