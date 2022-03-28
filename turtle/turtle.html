@@ -11,10 +11,13 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
 	<body>
 		<!-- content starts below here -->
                 <h1>Turtle</h1>
-                <form name="form1" id="form1" action="/action_page.php">
-                    Subjects: <select name="subject" id="subject">
-                    <option value="" selected="selected">Select subject</option>
+                <form name="form1" id="form1">
+                    Function: <select name="func" id="func">
+                    <option value="" selected="selected">Select Function</option>
+                    <option value="">N-gon</option>
   </select>
+  <label for="modifier">Modifier: </label>
+  <input type="text" id="fname" name="fname">
                 </form>
                 <canvas id="myDrawing" width="600" height="300"></canvas>
     <footer style="text-align: center;">
@@ -24,21 +27,6 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
     <a id="vLink1"><strong> HTML </strong> Valid! </a>
     <a id="vLink2"><strong> CSS </strong> Valid! </a>
     </footer>
-
-    <script type="text/javascript">
-    var subjectObject = {
-                "Option1": {
-                        },
-                "Option2": {
-                        }
-    }
-    var subjectSel = document.getElementById("subject");
-    window.onload = function() {
-        for (var x in subjectObject) {
-            subjectSel.options[subjectSel.options.length] = new Option(x, x);
-        }
-    }
-    </script>
 
     <script type="text/javascript" src="turtle.js"></script>
     <script>
