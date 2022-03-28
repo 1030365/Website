@@ -239,30 +239,5 @@ turtle.figure4 = function(count, angle, fn) {
 // =====================================================================================
   
 turtle.jumpTo(50,100,true);
-  
-turtle.circle(1); 
 
-turtle.jumpTo(180,200);
-
-turtle.spiral(2);
-
-turtle.jumpTo(300,250,true);
-
-turtle.shade(20,40,120,80);
-turtle.jumpTo(120,80,true);
-turtle.turnTo(0);
-turtle.forward(50);
-turtle.face(120,40);
-turtle.forward(100);
-turtle.face(120,80);
-turtle.forward(100);
-turtle.jumpTo(300,100,true);
-turtle.shadeCircle(80);
-turtle.jumpTo(400,150,true);
-turtle.shadeCircle(5);
-turtle.slideTo(450,100,true);
-turtle.shadeCircle(5);
-turtle.slideTo(500,200,true);
-turtle.shadeCircle(5);
-turtle.slideTo(400,150,true);
 
