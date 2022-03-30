@@ -11,14 +11,25 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
 	<body>
 		<!-- content starts below here -->
                 <h1>Turtle</h1>
-                <form name="form1" id="form1">
                     Function: <select name="func" id="func">
-                    <option value="" selected="selected">Select Function</option>
-                    <option value="">N-gon</option>
+                    <option value="1" selected="selected">Select Function</option>
+                    <option value="2">N-gon</option>
   </select>
   <label for="modifier">Modifier: </label>
-  <input type="text" id="fname" name="fname">
-                </form>
+  <input type="text" id="modifier" name="fname" value = "0">
+  <button id = "Generator" onclick = "myButton()">Generate</button>
+                  <script type="text/javascript">
+        function myButton() {
+            const func = document.getElementById("func");
+            let text = func.getAttribute("name");
+            let myModifier = document.getElementById("modifier").value;
+            let myFunc = document.getElementById("func").value;
+            if (myFunc == "2") {
+                    turtle.polygon(30,myModifier);
+            }
+        }
+                  </script>
+
                 <canvas id="myDrawing" width="600" height="300"></canvas>
     <footer style="text-align: center;">
         <a href="index.html">Return To Index</a>
