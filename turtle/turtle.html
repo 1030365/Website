@@ -17,19 +17,24 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                     <option value="2">N-gon</option>
                     <option value="3">Forward</option>
                     <option value="4">Turn</option>
+                    <option value="5">Jump</option>
   </select>
+  <br>
   <label for="modifier" id="modALabel">Modifier: </label>
+  <br>
   <input type="text" id="modifier" name="modA" value = "0">
-  <label for="modifierB" id="modBLabel">Modifier 2: </label>
+  <br>
+  <label for="modifierB" id="modBLabel">Modifier 2: <br></label>
   <input type="text" id="modifierB" name="modB" value = "0">
+  <br>
   <button id = "Generator" onclick = "myButton()">Generate</button>
                 </div>
                   <script type="text/javascript">
         var func = document.getElementById("func");
         function myButton() {
             let text = func.getAttribute("name");
-            let myModifier = document.getElementById("modifier").value;
-            let myModifierB = document.getElementById("modifierB").value;
+            let myModifier = parseInt(document.getElementById("modifier").value);
+            let myModifierB = parseInt(document.getElementById("modifierB").value);
             let myFunc = document.getElementById("func").value;
             if (myFunc == "2") {
                     turtle.polygon(myModifierB,myModifier);
@@ -39,6 +44,9 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
             }
             if (myFunc == "4") {
                     turtle.turnTo(myModifier);
+            }
+            if (myFunc == "5") {
+                    turtle.jumpTo(myModifier,myModifierB, true);
             }
         }
         window.onload = function() {
@@ -69,6 +77,12 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                         modAText.innerHTML = "Angle: ";
                         modBText.style.display = "none";
                         modBInput.style.display = "none";
+                }
+                if (myFunc == "5") {
+                        modAText.innerHTML = "X: ";
+                        modBText.innerHTML = "Y: ";
+                        modBText.style.display = "block";
+                        modBInput.style.display = "block";
                 }
             }
         }
