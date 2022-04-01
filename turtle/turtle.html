@@ -11,24 +11,71 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
 	<body>
 		<!-- content starts below here -->
                 <h1>Turtle</h1>
+                <div style="white-space: nowrap;">
                     Function: <select name="func" id="func">
                     <option value="1" selected="selected">Select Function</option>
                     <option value="2">N-gon</option>
+                    <option value="3">Forward</option>
+                    <option value="4">Turn</option>
   </select>
-  <label for="modifier">Modifier: </label>
-  <input type="text" id="modifier" name="fname" value = "0">
+  <label for="modifier" id="modALabel">Modifier: </label>
+  <input type="text" id="modifier" name="modA" value = "0">
+  <label for="modifierB" id="modBLabel">Modifier 2: </label>
+  <input type="text" id="modifierB" name="modB" value = "0">
   <button id = "Generator" onclick = "myButton()">Generate</button>
+                </div>
                   <script type="text/javascript">
+        var func = document.getElementById("func");
         function myButton() {
-            const func = document.getElementById("func");
             let text = func.getAttribute("name");
             let myModifier = document.getElementById("modifier").value;
+            let myModifierB = document.getElementById("modifierB").value;
             let myFunc = document.getElementById("func").value;
             if (myFunc == "2") {
-                    turtle.polygon(30,myModifier);
+                    turtle.polygon(myModifierB,myModifier);
+            }
+            if (myFunc == "3") {
+                    turtle.forward(myModifier);
+            }
+            if (myFunc == "4") {
+                    turtle.turnTo(myModifier);
             }
         }
+        window.onload = function() {
+            func.onchange = function() {
+                console.log("confirm");
+                let modAText = document.getElementById("modALabel");
+                let modBText = document.getElementById("modBLabel");
+                let modBInput = document.getElementById("modifierB");
+                let myFunc = document.getElementById("func").value;
+                if (myFunc == "1") {
+                        modAText.innerHTML = "Modifier: ";
+                        modBText.innerHTML = "Modifier 2: ";
+                        modBText.style.display = "block";
+                        modBInput.style.display = "block";
+                }
+                if (myFunc == "2") {
+                        modAText.innerHTML = "Sides: ";
+                        modBText.innerHTML = "Side Length: ";
+                        modBText.style.display = "block";
+                        modBInput.style.display = "block";
+                }
+                if (myFunc == "3") {
+                        modAText.innerHTML = "Distance: ";
+                        modBText.style.display = "none";
+                        modBInput.style.display = "none";
+                }
+                if (myFunc == "4") {
+                        modAText.innerHTML = "Angle: ";
+                        modBText.style.display = "none";
+                        modBInput.style.display = "none";
+                }
+            }
+        }
+
+
                   </script>
+                  <br>
 
                 <canvas id="myDrawing" width="600" height="300"></canvas>
     <footer style="text-align: center;">
