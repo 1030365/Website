@@ -16,8 +16,10 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                     <option value="1" selected="selected">Select Function</option>
                     <option value="2">N-gon</option>
                     <option value="3">Forward</option>
-                    <option value="4">Turn</option>
-                    <option value="5">Jump</option>
+                    <option value="4">Turn to Angle</option>
+                    <option value="5">Jump to Point</option>
+                    <option value="6">Turn to Point</option>
+                    <option value="7">Slide to Point</option>
   </select>
   <br>
   <label for="modifier" id="modALabel" style="display: none;">Modifier: <br></label>
@@ -43,12 +45,17 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                     turtle.turnTo(myModifier);
             }
             if (myFunc == "5") {
-                    turtle.jumpTo(myModifier,myModifierB, true);
+                    turtle.jumpTo(myModifier,myModifierB,true);
+            }
+            if (myFunc == "6") {
+                    turtle.face(myModifier,myModifierB);
+            }
+            if (myFunc == "7") {
+                    turtle.slideTo(myModifier,myModifierB,true);
             }
         }
         window.onload = function() {
             func.onchange = function() {
-                console.log("confirm");
                 let modAText = document.getElementById("modALabel");
                 let modBText = document.getElementById("modBLabel");
                 let modAInput = document.getElementById("modifier");
@@ -90,6 +97,24 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                         runButton.style.display = "block";
                 }
                 if (myFunc == "5") {
+                        modAText.innerHTML = "X: ";
+                        modBText.innerHTML = "Y: ";
+                        modAText.style.display = "block";
+                        modAInput.style.display = "block";
+                        modBText.style.display = "block";
+                        modBInput.style.display = "block";
+                        runButton.style.display = "block";
+                }
+                if (myFunc == "6") {
+                        modAText.innerHTML = "X: ";
+                        modBText.innerHTML = "Y: ";
+                        modAText.style.display = "block";
+                        modAInput.style.display = "block";
+                        modBText.style.display = "block";
+                        modBInput.style.display = "block";
+                        runButton.style.display = "block";
+                }
+                if (myFunc == "7") {
                         modAText.innerHTML = "X: ";
                         modBText.innerHTML = "Y: ";
                         modAText.style.display = "block";
