@@ -238,6 +238,6 @@ turtle.figure4 = function(count, angle, fn) {
 // Using the example definitions
 // =====================================================================================
   
-turtle.jumpTo(200,150,true);
+turtle.jumpTo(300,150,true);
 
 
