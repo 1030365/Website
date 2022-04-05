@@ -28,7 +28,7 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
   <input type="text" id="modifierB" name="modB" value = "0" style="display: none;">
   <button id = "Generator" onclick = "myButton()" style="display: none;">Generate</button>
                 </div>
-                  <script type="text/javascript">
+                  <script>
         var func = document.getElementById("func");
         function myButton() {
             let text = func.getAttribute("name");
@@ -139,7 +139,7 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
     <a id="vLink2"><strong> CSS </strong> Valid! </a>
     </footer>
 
-    <script type="text/javascript" src="turtle.js"></script>
+    <script src="turtle.js"></script>
     <script>
     var loc = window.location.href;
     var HTMLvalidatorLinkStr = 'http://validator.w3.org/check?uri=' + loc;
