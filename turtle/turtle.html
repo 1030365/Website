@@ -20,6 +20,7 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                     <option value="5">Jump to Point</option>
                     <option value="6">Turn to Point</option>
                     <option value="7">Slide to Point</option>
+                    <option value="8">Turtle Info</option>
   </select>
   <br>
   <label for="modifier" id="modALabel" style="display: none;">Modifier: <br></label>
@@ -122,6 +123,15 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                         modBText.style.display = "block";
                         modBInput.style.display = "block";
                         runButton.style.display = "block";
+                }
+                if (myFunc == "8") {
+                        modAText.innerHTML = `Coordinates: (${turtle.x}, ${turtle.y})`;
+                        modBText.innerHTML = `Angle: ${turtle.angle()}°`;
+                        modAText.style.display = "block";
+                        modAInput.style.display = "none";
+                        modBText.style.display = "block";
+                        modBInput.style.display = "none";
+                        runButton.style.display = "none";
                 }
             }
         }
