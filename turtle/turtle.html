@@ -4,11 +4,15 @@
 		<meta charset="utf-8">
 		<title>Turtle</title>
 <style>
+label {
+    width: 150px;
+}
+<style>
 article, aside, figure, footer, header, hgroup, menu, nav, section { display: block; }
   canvas {border: 1px dotted #564b47;}
 </style>
 	</head>
-	<body>
+	<body style="text-align: center;">
 		<!-- content starts below here -->
                 <h1>Turtle</h1>
                 <div style="white-space: nowrap;">
@@ -22,10 +26,14 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                     <option value="7">Slide to Point</option>
   </select>
   <br>
-  <label for="modifier" id="modALabel" style="display: none;">Modifier: <br></label>
-  <input type="text" id="modifier" name="modA" value = "0" style="display: none;">
-  <label for="modifierB" id="modBLabel" style="display: none;">Modifier 2: <br></label>
-  <input type="text" id="modifierB" name="modB" value = "0" style="display: none;">
+  <div style="padding-right:90px;">
+  <label for="modifier" id="modALabel" style="display: none; text-align: right;">Modifier: <br></label>
+  <input type="text" align="left" id="modifier" name="modA" value = "0" style="display: none;">
+  <br>
+  <label for="modifierB" id="modBLabel" style="display: none; text-align: right;">Modifier 2: <br></label>
+  <input type="text" align="left" id="modifierB" name="modB" value = "0" style="display: none;">
+  <br>
+  </div>
   <button id = "Generator" onclick = "myButton()" style="display: none;">Generate</button>
                 </div>
                   <script>
@@ -40,37 +48,37 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
             myVal: 2,
             funcstrg: function(AVal, BVal) {turtle.polygon(AVal,BVal)},
             myText: ["Sides: ","Side Length: "],
-            blocks: ["block","block","block","block","block"]
+            blocks: ["inline-block","inline-block","inline-block","inline-block","inline-block"]
         };
         const FORWARD = {
             myVal: 3,
             funcstrg: function(AVal,BVal) {turtle.forward(AVal)},
             myText: ["Distance: "," "],
-            blocks: ["block","block","none","none","block"]
+            blocks: ["inline-block","inline-block","none","none","inline-block"]
         };
         const TURN = {
             myVal: 4,
             funcstrg: function(AVal,BVal) {turtle.turnTo(AVal)},
             myText: ["Angle: "," "],
-            blocks: ["block","block","none","none","block"]
+            blocks: ["inline-block","inline-block","none","none","inline-block"]
         };
         const JUMPTO = {
             myVal: 5,
             funcstrg: function(AVal,BVal) {turtle.jumpTo(AVal,BVal,true)},
             myText: ["X: ","Y: "],
-            blocks: ["block","block","block","block","block"]
+            blocks: ["inline-block","inline-block","inline-block","inline-block","inline-block"]
         };
         const TURNTO = {
             myVal: 6,
             funcstrg: function(AVal,BVal) {turtle.face(AVal,BVal)},
             myText: ["X: ","Y: "],
-            blocks: ["block","block","block","block","block"]
+            blocks: ["inline-block","inline-block","inline-block","inline-block","inline-block"]
         };
         const SLIDE = {
             myVal: 7,
             funcstrg: function(AVal,BVal) {turtle.slideTo(AVal,BVal,true)},
             myText: ["X: ","Y: "],
-            blocks: ["block","block","block","block","block"]
+            blocks: ["inline-block","inline-block","inline-block","inline-block","inline-block"]
         };
         let allFuncs = [SELECTOR,NGON,FORWARD,TURN,JUMPTO,TURNTO,SLIDE];
         function myButton() {
