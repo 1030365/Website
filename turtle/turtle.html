@@ -20,7 +20,6 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                     <option value="5">Jump to Point</option>
                     <option value="6">Turn to Point</option>
                     <option value="7">Slide to Point</option>
-                    <option value="8">Turtle Info</option>
   </select>
   <br>
   <label for="modifier" id="modALabel" style="display: none;">Modifier: <br></label>
@@ -31,28 +30,59 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                 </div>
                   <script>
         var func = document.getElementById("func");
+        const SELECTOR = {
+            myVal: 1,
+            funcstrg: function(AVal, BVal) {console.log("")},
+            myText: [" "," "],
+            blocks: ["none","none","none","none","none"]
+        };
+        const NGON = {
+            myVal: 2,
+            funcstrg: function(AVal, BVal) {turtle.polygon(AVal,BVal)},
+            myText: ["Sides: ","Side Length: "],
+            blocks: ["block","block","block","block","block"]
+        };
+        const FORWARD = {
+            myVal: 3,
+            funcstrg: function(AVal,BVal) {turtle.forward(AVal)},
+            myText: ["Distance: "," "],
+            blocks: ["block","block","none","none","block"]
+        };
+        const TURN = {
+            myVal: 4,
+            funcstrg: function(AVal,BVal) {turtle.turnTo(AVal)},
+            myText: ["Angle: "," "],
+            blocks: ["block","block","none","none","block"]
+        };
+        const JUMPTO = {
+            myVal: 5,
+            funcstrg: function(AVal,BVal) {turtle.jumpTo(AVal,BVal,true)},
+            myText: ["X: ","Y: "],
+            blocks: ["block","block","block","block","block"]
+        };
+        const TURNTO = {
+            myVal: 6,
+            funcstrg: function(AVal,BVal) {turtle.face(AVal,BVal)},
+            myText: ["X: ","Y: "],
+            blocks: ["block","block","block","block","block"]
+        };
+        const SLIDE = {
+            myVal: 7,
+            funcstrg: function(AVal,BVal) {turtle.slideTo(AVal,BVal,true)},
+            myText: ["X: ","Y: "],
+            blocks: ["block","block","block","block","block"]
+        };
+        let allFuncs = [SELECTOR,NGON,FORWARD,TURN,JUMPTO,TURNTO,SLIDE];
         function myButton() {
             let text = func.getAttribute("name");
             let myModifier = parseInt(document.getElementById("modifier").value);
             let myModifierB = parseInt(document.getElementById("modifierB").value);
             let myFunc = document.getElementById("func").value;
-            if (myFunc == "2") {
-                    turtle.polygon(myModifierB,myModifier);
-            }
-            if (myFunc == "3") {
-                    turtle.forward(myModifier);
-            }
-            if (myFunc == "4") {
-                    turtle.turnTo(myModifier);
-            }
-            if (myFunc == "5") {
-                    turtle.jumpTo(myModifier,myModifierB,true);
-            }
-            if (myFunc == "6") {
-                    turtle.face(myModifier,myModifierB);
-            }
-            if (myFunc == "7") {
-                    turtle.slideTo(myModifier,myModifierB,true);
+            let strgFunc = null;
+            for (i=0; i < allFuncs.length; i++) {
+                if (allFuncs[i].myVal == myFunc) {
+                    allFuncs[i].funcstrg(myModifier,myModifierB);
+                }
             }
         }
         window.onload = function() {
@@ -63,75 +93,16 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                 let modBInput = document.getElementById("modifierB");
                 let runButton = document.getElementById("Generator");
                 let myFunc = document.getElementById("func").value;
-                if (myFunc == "1") {
-                        modAText.innerHTML = "Modifier: ";
-                        modBText.innerHTML = "Modifier 2: ";
-                        modAText.style.display = "none";
-                        modAInput.style.display = "none";
-                        modBText.style.display = "none";
-                        modBInput.style.display = "none";
-                        runButton.style.display = "none";
-                }
-                if (myFunc == "2") {
-                        modAText.innerHTML = "Sides: ";
-                        modBText.innerHTML = "Side Length: ";
-                        modAText.style.display = "block";
-                        modAInput.style.display = "block";
-                        modBText.style.display = "block";
-                        modBInput.style.display = "block";
-                        runButton.style.display = "block";
-                }
-                if (myFunc == "3") {
-                        modAText.innerHTML = "Distance: ";
-                        modAText.style.display = "block";
-                        modAInput.style.display = "block";
-                        modBText.style.display = "none";
-                        modBInput.style.display = "none";
-                        runButton.style.display = "block";
-                }
-                if (myFunc == "4") {
-                        modAText.innerHTML = "Angle: ";
-                        modAText.style.display = "block";
-                        modAInput.style.display = "block";
-                        modBText.style.display = "none";
-                        modBInput.style.display = "none";
-                        runButton.style.display = "block";
-                }
-                if (myFunc == "5") {
-                        modAText.innerHTML = "X: ";
-                        modBText.innerHTML = "Y: ";
-                        modAText.style.display = "block";
-                        modAInput.style.display = "block";
-                        modBText.style.display = "block";
-                        modBInput.style.display = "block";
-                        runButton.style.display = "block";
-                }
-                if (myFunc == "6") {
-                        modAText.innerHTML = "X: ";
-                        modBText.innerHTML = "Y: ";
-                        modAText.style.display = "block";
-                        modAInput.style.display = "block";
-                        modBText.style.display = "block";
-                        modBInput.style.display = "block";
-                        runButton.style.display = "block";
-                }
-                if (myFunc == "7") {
-                        modAText.innerHTML = "X: ";
-                        modBText.innerHTML = "Y: ";
-                        modAText.style.display = "block";
-                        modAInput.style.display = "block";
-                        modBText.style.display = "block";
-                        modBInput.style.display = "block";
-                        runButton.style.display = "block";
-                }
-                if (myFunc == "8") {
-                        modAText.innerHTML = `Coordinates: (${turtle.x}, ${turtle.y})`;
-                        modBText.innerHTML = `Angle: ${turtle.angle()}°`;
-                        modAText.style.display = "block";
-                        modAInput.style.display = "none";
-                        modBText.style.display = "block";
-                        modBInput.style.display = "none";
-                        runButton.style.display = "none";
+                for (i=0; i < allFuncs.length; i++) {
+                    if (allFuncs[i].myVal == myFunc) {
+                            modAText.innerHTML = allFuncs[i].myText[0];
+                            modBText.innerHTML = allFuncs[i].myText[1];
+                            modAText.style.display = allFuncs[i].blocks[0];
+                            modAInput.style.display = allFuncs[i].blocks[1];
+                            modBText.style.display = allFuncs[i].blocks[2];
+                            modBInput.style.display = allFuncs[i].blocks[3];
+                            runButton.style.display = allFuncs[i].blocks[4];
+                    }
                 }
             }
         }
