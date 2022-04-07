@@ -92,6 +92,8 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                     allFuncs[i].funcstrg(myModifier,myModifierB);
                 }
             }
+            document.getElementById("Coords").innerHTML = `Coordinates: (${Math.round(turtle.x)}, ${Math.round(turtle.y)})`;
+            document.getElementById("myAngle").innerHTML = `Angle: ${Math.round(turtle.angle()-90)}°`;
         }
         window.onload = function() {
             func.onchange = function() {
@@ -120,6 +122,8 @@ article, aside, figure, footer, header, hgroup, menu, nav, section { display: bl
                   <br>
 
                 <canvas id="myDrawing" width="600" height="300"></canvas>
+                <br><div id="Coords">Coordinates: (300,150)</div>
+                <div id="myAngle">Angle: -90°</div>
     <footer style="text-align: center;">
         <a href="index.html">Return To Index</a>
     </footer>
