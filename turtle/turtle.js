@@ -87,7 +87,7 @@ turtle.slideTo = function(newX, newY, penLanding = true) {
     let C = Math.pow(Asquared+Bsquared,0.5);
     turtle.face(newX, newY);
     turtle.forward(C);
-    turtle.penDown = penLanding;
+    turtle.jumpTo(newX, newY, penLanding);
 }
 
 turtle.turnTo = function(degree) {
@@ -97,13 +97,14 @@ turtle.turnTo = function(degree) {
 turtle.face = function(pointX, pointY) {
     let dx = pointX-turtle.x;
     let dy = pointY-turtle.y;
-    let slope = dy/dx;
-    let newAngle = Math.atan(slope) * 180 / Math.PI;
-    turtle.turnTo(-newAngle);
-    if (pointX<turtle.x) {
-        turtle.left(180);
+    if (!(dy == 0) || !(dx == 0)) { 
+        let slope = dy/dx;
+        let newAngle = Math.atan(slope) * 180 / Math.PI;
+        turtle.turnTo(-newAngle);
+        if (pointX<turtle.x) {
+            turtle.left(180);
+        }
     }
-    console.log(newAngle);
 }
 
 
