@@ -3,9 +3,9 @@ function Sum(numA, numB) {
 }
 
 function simpleDate() {
-    numA = (new Date().getMonth()+1);
-    numB = (new Date().getDate());
-    numC = parseInt(Date().split(' ')[3].slice(-2));
+    let numA: number = (new Date().getMonth()+1);
+    let numB = (new Date().getDate());
+    let numC = parseInt(Date().split(' ')[3].slice(-2));
     console.log(numA+"/"+numB+"/"+numC);
 }
 
