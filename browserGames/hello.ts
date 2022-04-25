@@ -1,5 +1,5 @@
-function Sum(numA, numB) {
-    console.log(numA+numB);
+function sum(numA: number, numB: number): number {
+    return numA+numB;
 }
 
 function simpleDate() {
@@ -13,6 +13,6 @@ function TimeSplit(x: number) {
     console.log(Date().split(' ')[4].split(':')[3-x]);
 }
 
-Sum(1,7);
+console.log(sum(1,7));
 
 TimeSplit(2);
