@@ -32,9 +32,24 @@ function makeboards() {
         if (strgb in strga) {
             continue
         }
-        strga.push(strgb)
+        strga.push(strgb);
     }
-    for (let i; i<strga.length; i++) {}
-        click(strga[i][0], strga[i][1])
+    for (let i = 0; i < strga.length; i++) {
+        click(strga[i][0], strga[i][1]);
     }
+}
+
+function display() {
+    console.log('\n'.repeat(5))
+    for i in GOALBOARD:
+        strg=''
+        for w in i:
+            strg+=w+' '
+        print(strg+'\n')
+    print('_'*10+'\n')
+    for i in BOARD:
+        strg=''
+        for w in i:
+            strg+=w+' '
+        print(strg+'\n')
 }
