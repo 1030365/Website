@@ -66,3 +66,11 @@ function flip(x,y) {
         BOARD[y]= BOARD[y].slice(0,x)+strg+BOARD[y].slice(x+1,BOARD[y].length)
     }
 }
+
+function click(x,y) {
+    for (let i = x-1; i < x+2; i++) {
+        for (let w = y-1; w < y+2; w++) {
+            flip(i,w)
+        }
+    }
+}
