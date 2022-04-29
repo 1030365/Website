@@ -74,3 +74,21 @@ function click(x,y) {
         }
     }
 }
+
+makeboards()
+display()
+
+for (let i = 0; i < TURNS; i++) {
+    let strg=prompt('Click Where? ');
+    let strgb=strg.split(',')
+    let x=parseInt(strgb[0])-1
+    let y=parseInt(strgb[1])-1
+    click(x,y)
+    display()
+}
+display()
+if (BOARD==GOALBOARD) {
+    console.log('YOU WIN!')
+} else {
+    console.log('Better luck next time...')
+}
