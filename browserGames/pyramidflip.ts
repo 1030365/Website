@@ -7,11 +7,9 @@ function listMultiply(theList: any[], theNum: number): any[] {
     }
     return x;
 }
-let testing = 'a';
-testing.repeat(6);
 let BOARD = listMultiply(['X'.repeat(WIDTH)], HEIGHT);
 let TURNS = 4;
-let GOALBOARD = listMultiply(['O'.repeat(WIDTH)], HEIGHT);
+let GOALBOARD: string[] = listMultiply(['O'.repeat(WIDTH)], HEIGHT);
 function makeboards() {
     BOARD = listMultiply([''], HEIGHT);
     for (let i = 0; i < WIDTH; i++) {
@@ -29,7 +27,7 @@ function makeboards() {
     let strga = [];
     while (strga.length < TURNS) {
         let strgb = (Math.round((WIDTH - 1) * Math.random() - 0.5), Math.round((HEIGHT - 1) * Math.random() - 0.5));
-        if (strgb in strga) {
+        if (strga.includes(strgb)) {
             continue
         }
         strga.push(strgb);
@@ -41,15 +39,30 @@ function makeboards() {
 
 function display() {
     console.log('\n'.repeat(5))
-    for i in GOALBOARD:
-        strg=''
-        for w in i:
-            strg+=w+' '
-        print(strg+'\n')
-    print('_'*10+'\n')
-    for i in BOARD:
-        strg=''
-        for w in i:
-            strg+=w+' '
-        print(strg+'\n')
+    GOALBOARD.forEach((rows, i) => {
+        let strg='';
+        rows.split('').forEach((col, w) => {
+            strg+=col+' ';
+        });
+        console.log(strg+'\n');
+    });
+    console.log('_'.repeat(10)+'\n');
+    BOARD.forEach((rows, i) => {
+        let strg='';
+        rows.split('').forEach((col, w) => {
+            strg+=col+' ';
+        });
+        console.log(strg+'\n');
+    });
+}
+
+function flip(x,y) {
+    let strg='O';
+    if (x>=0 && x<WIDTH && y>=0 && y<HEIGHT) {
+        strg='O';
+        if (BOARD[y][x]=='O') {
+            strg='X';
+        }
+        BOARD[y]= BOARD[y].slice(0,x)+strg+BOARD[y].slice(x+1,BOARD[y].length)
+    }
 }
