@@ -1,22 +1,23 @@
 let WIDTH = 4;
 let HEIGHT = 4;
-function listMultiply(theList: any[], theNum: number): any[] {
+function listMultiply(theList, theNum) {
     let x = [];
     for (let i = 0; i < theNum; i++) {
         x.concat(theList);
     }
     return x;
 }
-let BOARD: string[] = listMultiply(['X'.repeat(WIDTH)], HEIGHT);
-let TURNS: number = 4;
-let GOALBOARD: string[] = listMultiply(['O'.repeat(WIDTH)], HEIGHT);
-function makeboards(): void {
+let BOARD = listMultiply(['X'.repeat(WIDTH)], HEIGHT);
+let TURNS = 4;
+let GOALBOARD = listMultiply(['O'.repeat(WIDTH)], HEIGHT);
+function makeboards() {
     BOARD = listMultiply([''], HEIGHT);
     for (let i = 0; i < WIDTH; i++) {
         for (let w = 0; w < HEIGHT; w++) {
             if (Math.round(Math.random()) == 0) {
                 BOARD[w] = BOARD[w] + 'X';
-            } else {
+            }
+            else {
                 BOARD[w] = BOARD[w] + 'O';
             }
         }
@@ -37,7 +38,7 @@ function makeboards(): void {
             });
         }
         if (repeat) {
-            continue
+            continue;
         }
         strga.push(strgb);
     }
@@ -45,60 +46,56 @@ function makeboards(): void {
         click(strga[i][0], strga[i][1]);
     }
 }
-
 function display() {
-    console.log('\n'.repeat(5))
+    console.log('\n'.repeat(5));
     GOALBOARD.forEach((rows, i) => {
-        let strg='';
+        let strg = '';
         rows.split('').forEach((col, w) => {
-            strg+=col+' ';
+            strg += col + ' ';
         });
-        console.log(strg+'\n');
+        console.log(strg + '\n');
     });
-    console.log('_'.repeat(10)+'\n');
+    console.log('_'.repeat(10) + '\n');
     BOARD.forEach((rows, i) => {
-        let strg='';
+        let strg = '';
         rows.split('').forEach((col, w) => {
-            strg+=col+' ';
+            strg += col + ' ';
         });
-        console.log(strg+'\n');
+        console.log(strg + '\n');
     });
 }
-
-function flip(x,y) {
-    let strg='O';
-    if (x>=0 && x<WIDTH && y>=0 && y<HEIGHT) {
-        strg='O';
-        if (BOARD[y][x]=='O') {
-            strg='X';
+function flip(x, y) {
+    let strg = 'O';
+    if (x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT) {
+        strg = 'O';
+        if (BOARD[y][x] == 'O') {
+            strg = 'X';
         }
-        BOARD[y]= BOARD[y].slice(0,x)+strg+BOARD[y].slice(x+1,BOARD[y].length)
+        BOARD[y] = BOARD[y].slice(0, x) + strg + BOARD[y].slice(x + 1, BOARD[y].length);
     }
 }
-
-function click(x,y) {
-    for (let i = x-1; i < x+2; i++) {
-        for (let w = y-1; w < y+2; w++) {
-            flip(i,w)
+function click(x, y) {
+    for (let i = x - 1; i < x + 2; i++) {
+        for (let w = y - 1; w < y + 2; w++) {
+            flip(i, w);
         }
     }
 }
-
-makeboards()
-display()
-
+makeboards();
+display();
 for (let i = 0; i < TURNS; i++) {
     console.log("test");
-    let strg=prompt('Click Where? ');
-    let strgb=strg.split(',')
-    let x=parseInt(strgb[0])-1
-    let y=parseInt(strgb[1])-1
-    click(x,y)
-    display()
+    let strg = prompt('Click Where? ');
+    let strgb = strg.split(',');
+    let x = parseInt(strgb[0]) - 1;
+    let y = parseInt(strgb[1]) - 1;
+    click(x, y);
+    display();
 }
-display()
-if (BOARD==GOALBOARD) {
-    console.log('YOU WIN!')
-} else {
-    console.log('Better luck next time...')
+display();
+if (BOARD == GOALBOARD) {
+    console.log('YOU WIN!');
+}
+else {
+    console.log('Better luck next time...');
 }
