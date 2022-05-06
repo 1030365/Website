@@ -3,17 +3,17 @@ let HEIGHT = 4;
 function listMultiply(theList, theNum) {
     let x = [];
     for (let i = 0; i < theNum; i++) {
-        x.push(theList)
+        for (let j = 0; j < theList.length; j++) {
+            x.push(theList[j]);
+        }
     }
     return x;
 }
 let BOARD = listMultiply(['X'.repeat(WIDTH)], HEIGHT);
-console.log(BOARD);
 let TURNS = 4;
 let GOALBOARD = listMultiply(['O'.repeat(WIDTH)], HEIGHT);
 function makeboards() {
     BOARD = listMultiply([''], HEIGHT);
-    console.log(BOARD);
     for (let i = 0; i < WIDTH; i++) {
         for (let w = 0; w < HEIGHT; w++) {
             if (Math.round(Math.random()) == 0) {
@@ -24,7 +24,6 @@ function makeboards() {
             }
         }
     }
-    console.log(BOARD);
     for (let i = 0; i < BOARD.length; i++) {
         GOALBOARD[i] = BOARD[i];
     }
@@ -87,7 +86,6 @@ function click(x, y) {
 makeboards();
 display();
 for (let i = 0; i < TURNS; i++) {
-    console.log("test");
     let strg = prompt('Click Where? ');
     let strgb = strg.split(',');
     let x = parseInt(strgb[0]) - 1;
@@ -96,7 +94,7 @@ for (let i = 0; i < TURNS; i++) {
     display();
 }
 display();
-if (BOARD == GOALBOARD) {
+if (JSON.stringify(BOARD) == JSON.stringify(GOALBOARD)) {
     console.log('YOU WIN!');
 }
 else {
