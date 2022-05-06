@@ -10,11 +10,13 @@ function vertical(grid) {
     }
     return strga
 }
-def horizontal(grid):
-    strga=[]
-    for i in range(0,3):
-        strga.append(grid[(3*i):(3*i+3)])
+function horizontal(grid) {
+    let strga=[]
+    for (let i=0; i<3; i++) {
+        strga.push(grid[(3*i):(3*i+3)])
+    }
     return strga
+}
 
 def diagonal(grid):
     return [grid[0]+grid[4]+grid[8],grid[2]+grid[4]+grid[6]]
