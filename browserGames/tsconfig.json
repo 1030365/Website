@@ -2,6 +2,9 @@
     "compilerOptions": {
         "target": "es6",
         "module": "esnext",
-        "lib": ["es2016", "dom"]
+        "lib": ["es2016", "dom"],
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "isolatedModules": true
     }
 }
