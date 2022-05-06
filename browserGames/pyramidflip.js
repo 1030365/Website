@@ -3,15 +3,17 @@ let HEIGHT = 4;
 function listMultiply(theList, theNum) {
     let x = [];
     for (let i = 0; i < theNum; i++) {
-        x.concat(theList);
+        x.push(theList)
     }
     return x;
 }
 let BOARD = listMultiply(['X'.repeat(WIDTH)], HEIGHT);
+console.log(BOARD);
 let TURNS = 4;
 let GOALBOARD = listMultiply(['O'.repeat(WIDTH)], HEIGHT);
 function makeboards() {
     BOARD = listMultiply([''], HEIGHT);
+    console.log(BOARD);
     for (let i = 0; i < WIDTH; i++) {
         for (let w = 0; w < HEIGHT; w++) {
             if (Math.round(Math.random()) == 0) {
@@ -22,6 +24,7 @@ function makeboards() {
             }
         }
     }
+    console.log(BOARD);
     for (let i = 0; i < BOARD.length; i++) {
         GOALBOARD[i] = BOARD[i];
     }
