@@ -123,29 +123,31 @@ function options(grid) {
     return [move(grid)]
 }
 
-def play(grid):
-    strga=options(grid)
-    if len(strga)==1:
+function play(grid) {
+    let strga = options(grid)
+    let choice
+    if (strga.length==1) {
         choice=strga[0]
-    else:
-        strgb=len(strga)
-        strgc='choose to play at '
-        for i in range(0,strgb):
-            if strgb-i==1:
-                if strgb==2:
+    } else {
+        let strgb=strga.length
+        let strgc='choose to play at '
+        for (let i = 0; i < strgb; i++) {
+            if (strgb-i==1) {
+                if (strgb==2) {
                     strgc+=' '
-                strgc+=f'or {strga[-1]+1}:'
+                }
+                strgc += `or ${strga[strga.length-1]+1}:`
                 break
-            strgc+=str(strga[i]+1)
-            if strgb>2:
+            }
+            strgc+= `${strga[i]+1}`
+            if (strgb>2) {
                 strgc+=', '
-        #while True:
-            #choice=int(input(strgc))-1
-            #if choice in strga:
-                #break
-            #print('invalid choice')
-        choice=strga[randint(0,strgb-1)]
-    return grid[:choice]+str(turn(grid))+grid[(choice+1):]
+            }
+        }
+        choice=strga[Math.floor(strgb * Math.random())]
+    }
+    return grid.slice(0,grid.length-1)+`${turn(grid)}`+grid.slice((choice+1), grid.length)
+}
 
 
 
