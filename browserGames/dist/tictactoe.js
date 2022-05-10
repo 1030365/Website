@@ -1,8 +1,8 @@
 function vertical(grid) {
-    let strga = [];
-    let strgb = '';
-    for (let i = 0; i < 3; i++) {
-        for (let z = 0; z < 3; z++) {
+    var strga = [];
+    var strgb = '';
+    for (var i = 0; i < 3; i++) {
+        for (var z = 0; z < 3; z++) {
             strgb += grid[i + (3 * z)];
         }
         strga.push(strgb);
@@ -11,34 +11,37 @@ function vertical(grid) {
     return strga;
 }
 function horizontal(grid) {
-    let strga = [];
-    for (let i = 0; i < 3; i++) {
+    var strga = [];
+    for (var i = 0; i < 3; i++) {
         strga.push(grid[(3 * i)], (3 * i + 3));
     }
     return strga;
 }
-def;
-diagonal(grid);
-return [grid[0] + grid[4] + grid[8], grid[2] + grid[4] + grid[6]];
-def;
-display(grid);
-grid = grid.replace('0', ' ');
-grid = grid.replace('1', 'X');
-grid = grid.replace('2', 'O');
-print(f, '|{grid[:3]}|\n|{grid[3:6]}|\n|{grid[6:]}|');
-def;
-turn(grid);
-xcount = 0;
-ocount = 0;
-for (i in grid)
-    : if (i == '1')
-        : xcount += 1;
-elif;
-i == '2';
-ocount += 1;
-if (xcount == ocount)
-    : return 1;
-return 2;
+function diagonal(grid) {
+    return [grid[0] + grid[4] + grid[8], grid[2] + grid[4] + grid[6]];
+}
+function display(grid) {
+    grid = grid.replaceAll('0', ' ');
+    grid = grid.replaceAll('1', 'X');
+    grid = grid.replaceAll('2', 'O');
+    console.log("|".concat(grid.slice(0, 3), "|\n|").concat(grid.slice(3, 6), "|\n|").concat(grid.slice(6, grid.length), "|"));
+}
+function turn(grid) {
+    var xcount = 0;
+    var ocount = 0;
+    grid.split('').forEach(function (i, w) {
+        if (i == '1') {
+            xcount += 1;
+        }
+        else if (i == '2') {
+            ocount += 1;
+        }
+    });
+    if (xcount == ocount) {
+        return 1;
+    }
+    return 2;
+}
 def;
 winmove(grid);
 p = turn(grid);
