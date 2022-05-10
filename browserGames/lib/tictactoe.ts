@@ -50,12 +50,15 @@ function winmove(grid) {
     return check(grid,p);
 }
 
-def block(grid):
-    if turn(grid)==1:
+function block(grid) {
+    let p = 0;
+    if (turn(grid)==1) {
         p=2
-    else:
+    } else {
         p=1
+    }
     return check(grid,p)
+}
 
 def check(grid,p):
     strg=0
