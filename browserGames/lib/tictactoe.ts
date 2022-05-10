@@ -110,14 +110,18 @@ function move(grid) {
     return winmove(grid)
 }
 
-def options(grid):
-    if move(grid)=='?':
-        strg=[]
-        for i in range(0,9):
-            if grid[i]=='0':
-                strg.append(i)
+function options(grid) {
+    if (move(grid)=='?') {
+        let strg=[]
+        for (let i = 0; i < 9; i++) {
+            if (grid[i]=='0') {
+                strg.push(i)
+            }
+        }
         return strg
+    }
     return [move(grid)]
+}
 
 def play(grid):
     strga=options(grid)
