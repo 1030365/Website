@@ -60,35 +60,48 @@ function block(grid) {
     return check(grid,p)
 }
 
-def check(grid,p):
-    strg=0
-    for i in horizontal(grid):
-        if i==f'0{p}{p}':
+function check(grid,p) {
+    let strg=0
+    horizontal(grid).forEach((i,w) => {
+        if (i==`0${p}${p}`) {
             return 3*strg
-        if i==f'{p}0{p}':
+        }
+        if (i==`${p}0${p}`) {
             return 3*strg+1
-        if i==f'{p}{p}0':
+        }
+        if (i==`${p}${p}0`) {
             return 3*strg+2
+        }
         strg+=1
+    });
     strg=0
-    for i in vertical(grid):
-        if i==f'0{p}{p}':
+    vertical(grid).forEach((i,w) => {
+        if (i==`0${p}${p}`) {
             return strg
-        if i==f'{p}0{p}':
+        }
+        if (i==`${p}0${p}`) {
             return 3+strg
-        if i==f'{p}{p}0':
+        }
+        if (i==`${p}${p}0`) {
             return 6+strg
+        }
         strg+=1
+    });
     strg=0
-    for i in diagonal(grid):
-        if i==f'0{p}{p}':
+    diagonal(grid).forEach((i,w) => {
+        if (i==`0${p}${p}`) {
             return 2*strg
-        if i==f'{p}0{p}':
+        }
+        if (i==`${p}0${p}`) {
             return 4
-        if i==f'{p}{p}0':
+        }
+        if (i==`${p}${p}0`) {
             return 8-(2*strg)
+        }
         strg+=1
+    });
     return '?'
+}
 
 def move(grid):
     if winmove(grid)=='?':
