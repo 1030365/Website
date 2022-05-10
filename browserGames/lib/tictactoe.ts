@@ -103,12 +103,12 @@ function check(grid,p) {
     return '?'
 }
 
-def move(grid):
-    if winmove(grid)=='?':
-        if block=='?':
-            return '?'
+function move(grid) {
+    if (winmove(grid)=='?') {
         return block(grid)
+    }
     return winmove(grid)
+}
 
 def options(grid):
     if move(grid)=='?':
