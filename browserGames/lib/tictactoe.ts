@@ -152,21 +152,28 @@ function play(grid) {
 
 
 
-board='000000000'
+let board='000000000'
 
-winner=0
+let winner=0
 
-for i in range(0,9):
+function runGame() {
+    for (let i = 0; i < 9; i++) {
+        display(board)
+        console.log('_____')
+        if (winmove(board)=='?') {
+            board=play(board)
+        } else {
+            winner=turn(board)
+            board=play(board)
+            break
+        }
+    }
     display(board)
-    print('_____')
-    if winmove(board)=='?':
-        board=play(board)
-    else:
-        winner=turn(board)
-        board=play(board)
-        break
-display(board)
-if winner==0:
-    print('it\'s a tie')
-else:
-    print(f'player {winner} wins!')
+    if (winner==0) {
+        console.log('it\'s a tie')
+    } else {
+        console.log(`player ${winner} wins!`)
+    }
+}
+
+runGame()
