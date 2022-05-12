@@ -105,6 +105,9 @@ function check(grid,p) {
 
 function move(grid) {
     if (winmove(grid)=='?') {
+        if (block(grid) == '?') {
+            return '?'
+        }
         return block(grid)
     }
     return winmove(grid)
@@ -146,7 +149,7 @@ function play(grid) {
         }
         choice=strga[Math.floor(strgb * Math.random())]
     }
-    return grid.slice(0,grid.length-1)+`${turn(grid)}`+grid.slice((choice+1), grid.length)
+    return grid.slice(0,choice)+`${turn(grid)}`+grid.slice((choice+1), grid.length)
 }
 
 
