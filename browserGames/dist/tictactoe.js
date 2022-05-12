@@ -72,53 +72,78 @@ function block(grid) {
 
 function check(grid, p) {
   let strg = 0;
+  let c = -1;
   horizontal(grid).forEach((i, w) => {
     if (i == `0${p}${p}`) {
+      c = 3 * strg;
       return 3 * strg;
     }
 
     if (i == `${p}0${p}`) {
+      c = 3 * strg + 1;
       return 3 * strg + 1;
     }
 
     if (i == `${p}${p}0`) {
+      c = 3 * strg + 2;
       return 3 * strg + 2;
     }
 
     strg += 1;
   });
+
+  if (c > -1) {
+    return c;
+  }
+
   strg = 0;
   vertical(grid).forEach((i, w) => {
     if (i == `0${p}${p}`) {
+      c = strg;
       return strg;
     }
 
     if (i == `${p}0${p}`) {
+      c = strg + 3;
       return 3 + strg;
     }
 
     if (i == `${p}${p}0`) {
+      c = strg + 6;
       return 6 + strg;
     }
 
     strg += 1;
   });
+
+  if (c > -1) {
+    return c;
+  }
+
   strg = 0;
   diagonal(grid).forEach((i, w) => {
     if (i == `0${p}${p}`) {
+      c = strg * 2;
       return 2 * strg;
     }
 
     if (i == `${p}0${p}`) {
+      c = 4;
       return 4;
     }
 
     if (i == `${p}${p}0`) {
+      c = 8 - 2 * strg;
       return 8 - 2 * strg;
     }
 
     strg += 1;
   });
+
+  if (c > -1) {
+    return c;
+  }
+
   return '?';
 }
 
