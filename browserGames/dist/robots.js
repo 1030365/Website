@@ -4,6 +4,10 @@ let y = 10;
 let canvas = document.getElementById('myGame');
 let ctx = canvas.getContext("2d");
 
+function radnint(a, b) {
+  return Math.floor(a + (b - a + 1) * Math.random());
+}
+
 function check(e) {
   let dx = 0;
   let dy = 0;
@@ -20,13 +24,29 @@ function check(e) {
   console.log(`move by: (${dx}, ${dy})`);
 }
 
+class Player {
+  constructor() {
+    x += 0;
+  }
+
+}
+
+class Robot {
+  constructor() {
+    x += 0;
+  }
+
+}
+
 function move(newX, newY) {
   ctx.fillStyle = "#FFFFFF";
   ctx.fillRect(x * 10, y * 10, 10, 10);
   x += newX;
   y += newY;
-  ctx.fillStyle = "#FF0000";
+  ctx.fillStyle = "#000000";
   ctx.fillRect(x * 10, y * 10, 10, 10);
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillRect(x * 10 + 1, y * 10 + 1, 8, 8);
 }
 
 function game() {
