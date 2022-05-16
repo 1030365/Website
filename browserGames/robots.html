@@ -3,10 +3,16 @@
 	<head>
 		<meta charset="utf-8">
 		<title>GASP Robots</title>
+        <style>
+        canvas {
+            border: 1px dotted #564b47;
+        }
+        </style>
 	</head>
-	<body>
+	<body style="text-align: center">
 		<!-- content starts below here -->
                 <h1>GASP Robots!</h1>
+                <canvas id="myGame" width="600" height="300"></canvas>
     <footer style="text-align: center;">
         <a href="../index.html">Return To Homepage</a>
     </footer>
@@ -14,6 +20,7 @@
     <a id="vLink1"><strong> HTML </strong> Valid! </a>
     <a id="vLink2"><strong> CSS </strong> Valid! </a>
     </footer>
+    <script src='dist/robots.js'></script>
     <script>
     var loc = window.location.href;
     var HTMLvalidatorLinkStr = 'http://validator.w3.org/check?uri=' + loc;
