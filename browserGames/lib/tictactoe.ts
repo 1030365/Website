@@ -199,3 +199,5 @@ function runGame() {
 }
 
 runGame()
+
+export default runGame;
