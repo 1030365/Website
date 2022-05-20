@@ -3,6 +3,8 @@ window.addEventListener('keydown',check,false);
 class Player {
     x: number;
     y: number;
+    oldX: number;
+    oldY: number;
     constructor(x, y) {
         this.x = 1;
         this.y = 2;
@@ -12,6 +14,8 @@ class Player {
 class Robot {
     x: number;
     y: number;
+    oldX: number;
+    oldY: number;
     constructor(x, y) {
         this.x = 1;
         this.y = 2;
@@ -106,28 +110,61 @@ function move(newX, newY) {
     ctx.fillRect(player.x*10, player.y*10, 10, 10);
     ctx.fillStyle = "#FFFFFF";
     ctx.fillRect(player.x*10+1, player.y*10+1, 8, 8);
+    move_robots()
 }
 
-function teleport(newX, newY) {
+function move_robots() {
+    let newBotX = 0;
+    let newBotY = 0;
+    robots.forEach((bot, i) => {
+        newBotX = 0;
+        newBotY = 0;
+        if (bot.x>player.x) {
+            newBotX-=1
+        } else if (bot.x<player.x) {
+            newBotX+=1
+        }
+        if (bot.y>player.y) {
+            newBotY-=1
+        } else if (bot.y<player.y) {
+            newBotY+=1
+        }
+        teleport_robot(bot,bot.x+newBotX,bot.y+newBotY)
+    });
+    Draw_All_Elements()
+}
+
+function Draw_All_Elements() {
     ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(player.x*10, player.y*10, 10, 10);
-    player.x = newX;
-    player.y = newY;
+    ctx.fillRect(player.oldX*10, player.oldY*10, 10, 10);
+    robots.forEach((bot,i) => {
+        ctx.fillRect(bot.oldX*10, bot.oldY*10, 10, 10);
+    });
+    robots.forEach((bot,i) => {
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(bot.x*10, bot.y*10, 10, 10);
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillRect(bot.x*10+3, bot.y*10+3, 4, 4);
+    });
     ctx.fillStyle = "#000000";
     ctx.fillRect(player.x*10, player.y*10, 10, 10);
     ctx.fillStyle = "#FFFFFF";
     ctx.fillRect(player.x*10+1, player.y*10+1, 8, 8);
 }
 
+function teleport(newX, newY) {
+    player.oldX = player.x;
+    player.oldY = player.y;
+    player.x = newX;
+    player.y = newY;
+    Draw_All_Elements()
+}
+
 function teleport_robot(robot, newX, newY) {
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(robot.x*10, robot.y*10, 10, 10);
+    robot.oldX = robot.x;
+    robot.oldY = robot.y;
     robot.x = newX;
     robot.y = newY;
-    ctx.fillStyle = "#000000";
-    ctx.fillRect(robot.x*10, robot.y*10, 10, 10);
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(robot.x*10+3, robot.y*10+3, 4, 4);
 }
 
 function game() {
