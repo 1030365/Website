@@ -68,11 +68,21 @@ function place_robots() {
 function check(e) {
     let dx = 0
     let dy = 0
-    if (e.keyCode >= 37 && e.keyCode <= 40) {
-        dx = [-1,0,1,0][e.keyCode-37]
-        dy = [0,-1,0,1][e.keyCode-37]
-        if (10*(player.x+dx) < canvas.width && 10*(player.y+dy) < canvas.height && 10*(player.x+dx) >= 0 && 10*(player.y+dy) >= 0) {
-            move(dx, dy);
+    let code = e.keyCode
+    if ((e.keyCode >= 37 && e.keyCode <= 40) || (e.keyCode <= 56 && e.keyCode >= 49)) {
+        if (e.keyCode <= 56 && e.keyCode >= 49) {
+            code -= 8
+        }
+        dx = [-1,0,1,0,1,0,-1,-1,-1,0,1,1][code-37]
+        dy = [0,-1,0,1,1,1,1,0,-1,-1,-1,0][code-37]
+        if (!(10*(player.x+dx) < canvas.width && 10*(player.x+dx) >= 0)) {
+            dx = 0
+        }
+        if (!(10*(player.y+dy) < canvas.height && 10*(player.y+dy) >= 0)) {
+            dy = 0
+        }
+        if (!(dx == 0 && dy == 0)) {
+            move(dx, dy)
         }
         moved = true;
         console.log('moved')
