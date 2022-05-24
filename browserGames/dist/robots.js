@@ -32,11 +32,14 @@ function randint(a, b) {
 }
 
 function collided(thing1, list_of_things) {
-  list_of_things.forEach((thing2, i) => {
+  for (let i = 0; i < list_of_things.length; i++) {
+    const thing2 = list_of_things[i];
+
     if (thing1.x == thing2.x && thing1.y == thing2.y) {
       return true;
     }
-  });
+  }
+
   return false;
 }
 
@@ -132,6 +135,7 @@ function move_robots() {
 
     teleport_robot(bot, bot.x + newBotX, bot.y + newBotY);
   });
+  Draw_All_Elements();
   check_collisions();
   console.log(robots.length);
   Draw_All_Elements();
@@ -154,7 +158,7 @@ function robot_crashed(the_bot) {
   });
 
   if (a) {
-    return the_bot;
+    return c;
   }
 
   return false;
@@ -172,14 +176,19 @@ function check_collisions() {
       } else {
         junk.push(jbot);
       }
+    } else {
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillRect(bot.oldX * 10, bot.oldY * 10, 10, 10);
     }
   });
   robots = [];
-  console.log(surviving_robots);
+  console.log(junk);
   surviving_robots.forEach((bot, i) => {
     if (!collided(bot, junk)) {
       robots.push(bot);
     }
+
+    console.log(!collided(bot, junk));
   });
 
   if (robots == []) {
