@@ -49,7 +49,7 @@ function place_player() {
 }
 
 function safely_place_player() {
-  while (collided(player, robots)) {
+  while (collided(player, robots) || collided(player, junk)) {
     place_player();
   }
 
