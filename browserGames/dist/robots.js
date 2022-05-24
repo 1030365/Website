@@ -19,8 +19,10 @@ class Robot {
 }
 
 let moved = false;
+let junk = [];
 let robots = [];
 let numbots = 10;
+let finished = false;
 let player = new Player(1, 1);
 let canvas = document.getElementById('myGame');
 let ctx = canvas.getContext("2d");
@@ -89,15 +91,12 @@ function check(e) {
     }
 
     moved = true;
-    console.log('moved');
     return true;
   } else if (e.keyCode == 57) {
     safely_place_player();
     moved = false;
     return false;
   }
-
-  console.log(`move by: (${dx}, ${dy})`);
 }
 
 function move(newX, newY) {
@@ -133,7 +132,65 @@ function move_robots() {
 
     teleport_robot(bot, bot.x + newBotX, bot.y + newBotY);
   });
+  check_collisions();
+  console.log(robots.length);
   Draw_All_Elements();
+}
+
+function robot_crashed(the_bot) {
+  let c;
+  let a = false;
+  robots.forEach((a_bot, i) => {
+    if (a_bot == the_bot) {
+      c = false;
+      return false;
+    }
+
+    if (a_bot.x == the_bot.x && a_bot.y == the_bot.y) {
+      c = a_bot;
+      a = true;
+      return a_bot;
+    }
+  });
+
+  if (a) {
+    return the_bot;
+  }
+
+  return false;
+}
+
+function check_collisions() {
+  let surviving_robots = [];
+  let jbot;
+  robots.forEach((bot, i) => {
+    if (!collided(bot, junk)) {
+      jbot = robot_crashed(bot);
+
+      if (jbot === false) {
+        surviving_robots.push(bot);
+      } else {
+        junk.push(jbot);
+      }
+    }
+  });
+  robots = [];
+  console.log(surviving_robots);
+  surviving_robots.forEach((bot, i) => {
+    if (!collided(bot, junk)) {
+      robots.push(bot);
+    }
+  });
+
+  if (robots == []) {
+    console.log('VICTORY!');
+    finished = true;
+  }
+
+  if (collided(player, robots) || collided(player, junk)) {
+    console.log('You\'ve been caught!');
+    finished = true;
+  }
 }
 
 function Draw_All_Elements() {
@@ -141,6 +198,12 @@ function Draw_All_Elements() {
   ctx.fillRect(player.oldX * 10, player.oldY * 10, 10, 10);
   robots.forEach((bot, i) => {
     ctx.fillRect(bot.oldX * 10, bot.oldY * 10, 10, 10);
+  });
+  junk.forEach((trash, i) => {
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(trash.oldX * 10, trash.oldY * 10, 10, 10);
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(trash.x * 10, trash.y * 10, 10, 10);
   });
   robots.forEach((bot, i) => {
     ctx.fillStyle = "#000000";
@@ -172,7 +235,6 @@ function teleport_robot(robot, newX, newY) {
 function game() {
   place_robots();
   safely_place_player();
-  console.log('moved');
 }
 
 game();
