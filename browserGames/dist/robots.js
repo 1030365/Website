@@ -26,6 +26,7 @@ let finished = false;
 let player = new Player(1, 1);
 let canvas = document.getElementById('myGame');
 let ctx = canvas.getContext("2d");
+let gameStatus = document.getElementById('gameStatus');
 
 function randint(a, b) {
   return Math.floor(a + (b - a + 1) * Math.random());
@@ -69,6 +70,10 @@ function place_robots() {
 }
 
 function check(e) {
+  if (finished) {
+    return null;
+  }
+
   let dx = 0;
   let dy = 0;
   let code = e.keyCode;
@@ -137,7 +142,6 @@ function move_robots() {
   });
   Draw_All_Elements();
   check_collisions();
-  console.log(robots.length);
   Draw_All_Elements();
 }
 
@@ -182,22 +186,19 @@ function check_collisions() {
     }
   });
   robots = [];
-  console.log(junk);
   surviving_robots.forEach((bot, i) => {
     if (!collided(bot, junk)) {
       robots.push(bot);
     }
-
-    console.log(!collided(bot, junk));
   });
 
-  if (robots == []) {
-    console.log('VICTORY!');
+  if (robots.length == 0) {
+    gameStatus.innerHTML = 'VICTORY!';
     finished = true;
   }
 
   if (collided(player, robots) || collided(player, junk)) {
-    console.log('You\'ve been caught!');
+    gameStatus.innerHTML = 'You\'ve been caught!';
     finished = true;
   }
 }
