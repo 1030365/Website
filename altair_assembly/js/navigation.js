@@ -1,4 +1,5 @@
-  /* Tutorial creators should edit the title, author, and list of lesson
+window.onload = function() {
+/* Tutorial creators should edit the title, author, and list of lesson
      name values appropriately. */
   var title =  "Getting Down with Altair 8800 Assembly Programming";
   var author = "John Newell";
@@ -16,8 +17,8 @@
 
   /* Don't touch anything below here unless you really know what you
      are doing! */
-  document.querySelector("title").innerHTML = title;
-  document.querySelector("header.h1.a").innerHTML = title;
+  document.querySelector("title").textContent = title;
+  document.querySelector("header h1 a").textContent = title;
   document.querySelector("p#author span").textContent = author;
 
   var digit = document.URL.substr(-6, 1);
@@ -36,3 +37,4 @@
       document.querySelector('li#l' + i + ' span').textContent = lessons[i - 1];
     };
   };
+};
