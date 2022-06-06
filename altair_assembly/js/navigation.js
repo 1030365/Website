@@ -32,7 +32,7 @@ window.onload = function() {
       var nlink = "lesson" + (num + 1) + ".html";
       document.querySelector("a#next").setAttribute('href', nlink);
     };
-  } else if (digit == 'x') {
+  } else if ((!(document.URL.substr(-5, 1) == '.')) || (digit == 'x')) {
     for (var i = 1; i < 10; i++) {
       document.querySelector('li#l' + i + ' span').textContent = lessons[i - 1];
     };
