@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+<meta charset="utf-8">
+<title>Getting Down with ...: Lesson n</title>
+<style>
+@import url(css/gdw.css);
+</style>
+<script src="js/jquery-current.min.js"></script>
+<script src="js/navigation.js"></script>
+<!--
+Permission is granted to copy, distribute and/or modify this document under the
+terms of the GNU Free Documentation License, Version 1.3 or any later version
+published by the Free Software Foundation; with no Invariant Sections, no
+Front-Cover Texts, and no Back-Cover Texts.  A copy of the license is included
+in the section entitled "GNU Free Documentation License".
+-->
+</head>
+
+<body>
+<header>
+<h1><a href="index.html">Getting Down with ...</a></h1>
+<nav>
+  <a id="s1" href="lesson1.html">lesson 1</a>
+  <a id="s2" href="lesson2.html">lesson 2</a>
+  <a id="s3" href="lesson3.html">lesson 3</a>
+  <a id="s4" href="lesson4.html">lesson 4</a>
+  <a id="s5" href="lesson5.html">lesson 5</a>
+  <a id="s6" href="lesson6.html">lesson 6</a>
+  <a id="s7" href="lesson7.html">lesson 7</a>
+  <a id="s8" href="lesson8.html">lesson 8</a>
+  <a id="s9" href="lesson9.html">lesson 9</a>
+</nav>
+<p id="author">by <span>...</span></p>
+</header>
+
+<h1 id="title">Lesson n:</h1>
+
+<section id="lesson">
+<p>
+In most programming languages you declare a variable by entering a name, and
+setting its value equal to a static piece of data. You don't need to worry
+about where the value inside the variable is located. Most people view
+variables like a box, which can be created and destroyed. While the box is
+still in box form, data is placed in it. When the box no longer has a purpose
+and is removed from the program, it ceases to exist, right?
+</p><p>
+Actually, a variable is more like a drawer in a large shelf made up of
+identical drawers. When you declare a variable and place a name on it, you put
+a label on that drawer. Any values that are assigned to the variable are put in
+the drawer. When the variable is removed from the program, the contents and
+label are removed from the drawer, but it continues to exist.
+</p><p>
+It is important to understand this distinction when creating variables in
+assembly language. While most other languages appear to have the “box” style of
+variables, assembly language forces you to choose what "drawer" you want your
+variable to be.
+</p><p>
+When setting up a program in assembly, it is divided into two main parts, the
+code segment and the data segment. In the code segment, the program’s
+instructions are written. In the data segment, the variables are declared. 
+</p><p>
+To declare variables in assembly, the program counter of the data segment must
+be set. Depending on how much code you plan on writing, you can decide where
+you would like to begin the program counter. As long as it does not interfere
+with the code segment, any value should work.
+</section>
+
+<section id="exercises">
+<h2>Exercise: *Add Two Numbers*</h2>
+<p>
+For our first application of assembly, we will create a program that takes two
+variables containing integers, adds them, and stores the sum in a third
+variable. Simple, right? Not exactly.
+</p><p>
+The first step is to create the data segment.
+</p><pre>
+    ; Data segment:
+
+            ORG    200o     ; Set Program Counter to address 200
+    VAL1:   DB     5o       ; Data Byte at address 200 = 5
+    VAL2:   DB     10o      ; Data Byte at address 201 = 8 (10 octal)
+    SUM:    DB     0o       ; Data Byte at address 202 = 0
+</pre><p>
+In this code, ORG sets the program counter, and the number immediately after
+declares it to start at address 200. Using the labels, the following lines
+establish the variables. Each variable assumes the address of the program count
+<p>
+</section>
+
+<footer>
+<hr>
+<p id="finished">Congratulations, you have finished lesson <span>n</span>;</p>
+<p><a id="next" href="">next lesson</a> | <a href="index.html">home page</a></p>
+<p class="button">
+<a href="http://validator.w3.org/check/referer">
+<strong> HTML </strong> Valid! </a> &nbsp;
+<a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">
+<strong> CSS </strong> Valid! </a>
+</p>
+<p>
+<a href="http://www.ibiblio.org/">
+<img src="http://www.ibiblio.org/hosted/images/sm_hosted_trans.gif"
+width="100" height="30" alt="hosted by ibiblio"></a>
+</p>
+</footer>
+
+</body>
+</html>

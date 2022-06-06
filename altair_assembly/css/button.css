@@ -1,0 +1,32 @@
+/* HTML validation button */
+p.button a {
+    display: inline;
+    width: 50px;
+    padding: 1px;
+    font-size: 9px;
+    font-family: Verdana, Geneva, sans-serif;
+    text-decoration: none;
+    text-align: center;
+    color: #333;
+    background-color: #ccc;
+    border: 1px solid black;
+    vertical-align: middle;
+    white-space: nowrap;
+    cursor: pointer;
+
+}
+p.button a strong {
+    font-weight: bold;
+    color: #fff;
+    background-color: #226;
+    padding-left: 2px;
+    margin-right: 5px;
+}
+p.button a:hover {
+    color: #fff;
+    background-color: #226;
+}
+p.button a:hover strong {
+    color: #333;
+    background-color: #ccc;
+}

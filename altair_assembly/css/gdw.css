@@ -1,0 +1,150 @@
+/* Import the CSS button style */
+@import url(button.css);
+
+/* General Content */
+body {
+    color: #000;
+    margin: 50px;
+}
+p, li {
+    font-size: large;
+}
+h1 {
+    text-align: center;
+}
+h1, h2 {
+    color: #007;
+}
+h3 {
+    color: #77F;
+}
+img {
+    border: 0;
+}
+a {
+    text-decoration: none;
+    color: #00A;
+}
+a:visited {
+    color: #007;
+}
+a:hover {
+    color: #FFF;
+    background-color: #33A;
+    text-decoration: none;
+}
+dd {
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+
+/* Top section and navigation */
+header {
+    display: block;
+    margin: -35px -25px 0px -25px;
+    border: 2px solid #000;
+    text-align: center;
+}
+header h1 {
+    font-size: 36px;
+    color: #007;
+    padding: 5px 1px;
+}
+header nav {
+    display: table;
+    width: 100%;
+    background-color: #5B5C5C;
+}
+header nav a {
+    display: table-cell;
+    color: #FFF;
+    text-align: center;
+    font: bold 12pt/24px sans-serif;
+}
+header nav a:visited {
+    color: #FFF;
+    text-decoration: none;
+}
+header nav a:hover {
+    color: #FF0;
+    text-decoration: none;
+}
+header p {
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: #006;
+    color: #AAF;
+    font: bold 12pt/24px serif;
+    text-align: center;
+}
+
+/* Lessons */
+section#lesson>p {
+    text-align: justify;
+}
+section#lesson>h2, section#lesson>h3 {
+    text-align: center;
+    font-size: x-large;
+}
+section#lesson>h2 {
+    margin-top: 50px;
+}
+cite {
+    display: block;
+    margin-top: 5px;
+}
+
+/* Source Examples */
+.source {
+    color: #FFF;
+    background-color: #36C;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 12pt;
+}
+.source a, .source a:visited {
+    color: #CCF;
+    text-decoration: none;
+}
+.source a:hover {
+    color: #FF0;
+    text-decoration: none;
+}
+
+/* Exercises */
+#exercises {
+    border-top: 1px solid #777;
+    margin-top: 40px;
+    margin-left: 25px;
+}
+#exercises h2 {
+    margin-left: -25px;
+    text-align: left;
+}
+#exercises li {
+    margin-bottom: 20px;
+}
+#exercises li>ol>li {
+    margin-bottom: 10px;
+    list-style-type: lower-roman;
+}
+#exercises li>ul>li {
+    margin-bottom: 10px;
+    list-style-type: square;
+}
+#exercises li>ol>li, #exercises li>ul>li {
+    margin-top: 10px;
+}
+
+/* Bottom section and navigation */
+footer p {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+footer p.button {
+    margin-top: 30px;
+}
