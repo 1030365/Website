@@ -21,7 +21,14 @@ window.onload = function() {
   document.querySelector("header h1 a").textContent = title;
   document.querySelector("p#author span").textContent = author;
 
-  var digit = document.URL.substr(-6, 1);
+  var url = window.location.pathname;
+  var filename = url.substring(url.lastIndexOf('/')+1);
+  var digit = 'empty'
+  if ((filename == '') || (filename == 'index.html')) {
+      digit = 'x';
+  } else if (filename.slice(0,6) == 'lesson') {
+      digit = filename[6];
+  }
   if (digit >= '0' && digit <= '9') {
     var changed = "s" + digit;
     var num = parseInt(digit);
@@ -32,7 +39,7 @@ window.onload = function() {
       var nlink = "lesson" + (num + 1) + ".html";
       document.querySelector("a#next").setAttribute('href', nlink);
     };
-  } else if ((!(document.URL.substr(-5, 1) == '.')) || (digit == 'x')) {
+  } else if (digit == 'x') {
     for (var i = 1; i < 10; i++) {
       document.querySelector('li#l' + i + ' span').textContent = lessons[i - 1];
     };
