@@ -37,7 +37,7 @@ function Box1Out() {
 }
 
 function Box2Out() {
-    if (!(parseInt(EXTRA.value)>0)) {
+    if (!(parseInt(EXTRA.value)>=0)) {
         EXTRA.value = extra_time
     }
     EXTRA.value = parseInt(EXTRA.value)
@@ -51,8 +51,8 @@ function Box3Out() {
 }
 
 function Box4Out() {
-    if (!(parseInt(TOTAL.value)>0)) {
-        TOTAL.value = total_time
+    if (!(parseInt(TOTAL.value)>(parseInt(WORK.value)+parseInt(REST.value)+1))) {
+        TOTAL.value = parseInt(WORK.value)+parseInt(REST.value)+1
     }
     TOTAL.value = parseInt(TOTAL.value)
 }
@@ -114,10 +114,12 @@ function reveal_button() {
     }
     if (op1.checked) {
         if (op4.checked) {
-            if (document.getElementById("song").value == '') {
+            if (song_input.value.length < 5) {
                 button.style.display = 'none'
-            } else {
+            } else if ((song_input.value.slice(-4) == '.mp3') || (song_input.value.slice(-4) == '.wav')) {
                 button.style.display = 'inline-block'
+            } else {
+                button.style.display = 'none'
             }
         } else if (op3.checked) {
             button.style.display = 'inline-block'
@@ -213,7 +215,6 @@ function end_ladder() {
     checker = true
     clearTimeout(timeout)
     audio.pause()
-    alarm.pause()
     count = 0
     button.textContent = 'Play'
     button2.style.display = 'none'
