@@ -7,7 +7,31 @@
 	<body>
 		<!-- content starts below here -->
                 <h1>Study Ladder</h1>
-                <button id='playButton' onclick='play()'>Play</button>
+                <p>How long (in minutes) do you want your first study session to be?</p>
+                <input type="text" id="start" onfocusout="Box1Out()">
+                <p>How much extra time (in minutes) should be added to each subsequent work session?</p>
+                <input type="text" id="extra" onfocusout="Box2Out()">
+                <p>How long (in minutes) do you want your breaks to be?</p>
+                <input type="text" id="break" onfocusout="Box3Out()">
+                <p>How long (in minutes) do you want to do this study ladder for?</p>
+                <input type="text" id="total" onfocusout="Box4Out()">
+                <div id="q1">
+                    <p>Do you want study music?</p>
+                    <input type="radio" id="op1">Yes</input><br>
+                    <input type="radio" id="op2">No</input>
+                </div>
+                <div id="q2" style="display: none">
+                    <p>Do you want to use generic study music or custom study music?</p>
+                    <input type="radio" id="op3">Generic</input><br>
+                    <input type="radio" id="op4">Custom</input><br>
+                </div>
+                <br>
+                <div id="q3" style="display: none">
+                    <p>What audio file would you like to use as study music?</p>
+                    <input type="file" accept='.mp3,.wav' id="song"><br><br>
+                </div>
+                <br><button style="display: none" id='playButton'>Play</button>
+                <br><button style="display: none" id='muteButton'>Mute Study Music</button>
     <footer style="text-align: center;">
     <a id="vLink1"><strong> HTML </strong> Valid! </a>
     <a id="vLink2"><strong> CSS </strong> Valid! </a>
