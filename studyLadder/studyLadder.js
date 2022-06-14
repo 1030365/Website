@@ -10,6 +10,10 @@ let TOTAL = document.getElementById("total");
 let button = document.getElementById("playButton")
 let button2 = document.getElementById("muteButton")
 let song_input = document.getElementById("song")
+let timeText = document.getElementById("nextTime")
+let working = false
+let Time = new Date()
+let nextTime = new Date()
 let work_time = 15;
 let extra_time = 5;
 let rest_time = 15;
@@ -96,6 +100,8 @@ op4.onchange = function() {
 }
 
 function Work() {
+    working = true
+    set_the_time()
     alarm.play()
     timeout = setTimeout(function() {
         if (music) {
@@ -136,6 +142,7 @@ function reveal_button() {
 
 
 function Rest() {
+    working = false
     if (total_time > 0) {
         if (music) {
             audio.pause()
@@ -147,6 +154,7 @@ function Rest() {
         if (work_time+2*rest_time >= total_time) {
             work_time = total_time-rest_time
         }
+        set_the_time()
         timeout = setTimeout(function() {
             total_time -= rest_time
             Work()
@@ -179,6 +187,7 @@ function play() {
         audio.loop = true;
         audio.volume = 1
         button.textContent = 'End Ladder'
+        button2.textContent = 'Mute Study Music'
         begin_ladder()
     }
 }
@@ -201,17 +210,49 @@ button.onclick = function() {
     }
 }
 
+function set_the_time() {
+    let hr = 0
+    let ampm = 'A.M.'
+    let message = 'Break Ends'
+    let extraZero = ''
+    Time = new Date()
+    nextTime = new Date(Time.getTime()+(60000*rest_time))
+    if (working) {
+        message = 'Next Break'
+        if (work_time == total_time) {
+            message = 'Ladder Finishes'
+        }
+        nextTime = new Date(Time.getTime()+(60000*work_time))
+    }
+    if (nextTime.getHours() == 0) {
+        hr = 12
+    } else if (nextTime.getHours() == 12) {
+        ampm = 'P.M.'
+    } else if (nextTime.getHours() > 12) {
+        ampm = 'P.M.'
+        hr = -12
+    }
+    if (nextTime.getMinutes() < 10) {
+        extraZero = '0'
+    }
+    timeText.textContent = `${message} at ${nextTime.getHours()+hr}:${extraZero}${nextTime.getMinutes()} ${ampm}`
+}
+
 function begin_ladder() {
+    working = true
+    set_the_time()
     if (music) {
         audio.play()
         button2.style.display = 'inline-block'
     }
+    timeText.style.display = 'inline-block'
     timeout = setTimeout(function() {
         Rest()
     }, 60000*work_time)
 }
 
 function end_ladder() {
+    working = false
     checker = true
     clearTimeout(timeout)
     audio.pause()
@@ -219,4 +260,5 @@ function end_ladder() {
     button.textContent = 'Play'
     button2.style.display = 'none'
     reveal_button()
+    timeText.style.display = 'none'
 }
