@@ -2,7 +2,7 @@ let count = 0
 let checker = true
 let audio = new Audio('AlphaWaves.mp3');
 let alarm = new Audio('Alarm.mp3');
-
+let lastTime = null
 let WORK = document.getElementById("start");
 let EXTRA = document.getElementById("extra");
 let REST = document.getElementById("break");
@@ -11,6 +11,8 @@ let button = document.getElementById("playButton")
 let button2 = document.getElementById("muteButton")
 let song_input = document.getElementById("song")
 let timeText = document.getElementById("nextTime")
+let nextRung = document.getElementById("nextRung")
+let endTime = document.getElementById("endTime")
 let working = false
 let Time = new Date()
 let nextTime = new Date()
@@ -148,13 +150,14 @@ function Rest() {
             audio.pause()
             button2.style.display = 'none'
         }
+        set_the_time()
         alarm.play()
         total_time -= work_time
         work_time += extra_time
         if (work_time+2*rest_time >= total_time) {
             work_time = total_time-rest_time
+            nextRung.textContent = `Next Rung: ${work_time} min`
         }
-        set_the_time()
         timeout = setTimeout(function() {
             total_time -= rest_time
             Work()
@@ -217,10 +220,19 @@ function set_the_time() {
     let extraZero = ''
     Time = new Date()
     nextTime = new Date(Time.getTime()+(60000*rest_time))
+    if (lastTime == null) {
+        lastTime = new Date(Time.getTime()+(60000*total_time))
+    }
     if (working) {
         message = 'Next Break'
         if (work_time == total_time) {
             message = 'Ladder Finishes'
+            endTime.style.display = 'none'
+            nextRung.style.display = 'none'
+        } else if (2*work_time+extra_time+2*rest_time >= total_time) {
+            nextRung.textContent = `Next Rung: ${total_time-work_time-rest_time} min`
+        } else {
+            nextRung.textContent = `Next Rung: ${work_time+extra_time} min`
         }
         nextTime = new Date(Time.getTime()+(60000*work_time))
     }
@@ -234,8 +246,22 @@ function set_the_time() {
     }
     if (nextTime.getMinutes() < 10) {
         extraZero = '0'
+    } else {
+        extraZero = ''
     }
     timeText.textContent = `${message} at ${nextTime.getHours()+hr}:${extraZero}${nextTime.getMinutes()} ${ampm}`
+    if (lastTime.getHours() == 0) {
+        hr = 12
+    } else if (lastTime.getHours() == 12) {
+        ampm = 'P.M.'
+    } else if (lastTime.getHours() > 12) {
+        ampm = 'P.M.'
+        hr = -12
+    }
+    if (lastTime.getMinutes() < 10) {
+        extraZero = '0'
+    }
+    endTime.textContent = `Ladder Finishes at ${lastTime.getHours()+hr}:${extraZero}${lastTime.getMinutes()} ${ampm}`
 }
 
 function begin_ladder() {
@@ -246,6 +272,8 @@ function begin_ladder() {
         button2.style.display = 'inline-block'
     }
     timeText.style.display = 'inline-block'
+    nextRung.style.display = 'inline-block'
+    endTime.style.display = 'inline-block'
     timeout = setTimeout(function() {
         Rest()
     }, 60000*work_time)
@@ -257,8 +285,12 @@ function end_ladder() {
     clearTimeout(timeout)
     audio.pause()
     count = 0
+    lastTime = null
     button.textContent = 'Play'
     button2.style.display = 'none'
     reveal_button()
     timeText.style.display = 'none'
+    nextRung.style.display = 'none'
+    endTime.style.display = 'none'
+    endTime
 }
