@@ -2,6 +2,7 @@ let count = 0
 let checker = true
 let audio = new Audio('AlphaWaves.mp3');
 let alarm = new Audio('Alarm.mp3');
+let beep = new Audio('beep.mp3');
 let lastTime = null
 let WORK = document.getElementById("start");
 let EXTRA = document.getElementById("extra");
@@ -13,6 +14,7 @@ let song_input = document.getElementById("song")
 let timeText = document.getElementById("nextTime")
 let nextRung = document.getElementById("nextRung")
 let endTime = document.getElementById("endTime")
+let addTime = document.getElementById("addButton")
 let working = false
 let Time = new Date()
 let nextTime = new Date()
@@ -20,6 +22,7 @@ let work_time = 15;
 let extra_time = 5;
 let rest_time = 15;
 let total_time = 90;
+let added_time = 0;
 let strg = true
 let op1 = document.getElementById("op1")
 let op2 = document.getElementById("op2")
@@ -40,6 +43,7 @@ function Box1Out() {
         WORK.value = work_time
     }
     WORK.value = parseInt(WORK.value)
+    Box4Out()
 }
 
 function Box2Out() {
@@ -54,6 +58,7 @@ function Box3Out() {
         REST.value = rest_time
     }
     REST.value = parseInt(REST.value)
+    Box4Out()
 }
 
 function Box4Out() {
@@ -110,9 +115,15 @@ function Work() {
             audio.play()
             button2.style.display = 'inline-block'
         }
+        addTime.style.display = 'inline-block'
         timeout = setTimeout(function() {
-            Rest()
-        }, (60000*work_time)-(1000*alarm.duration))
+            if (added_time == 0) {
+                beep.play()
+            }
+            timeout = setTimeout(function() {
+                extra_minutes()
+            }, 30000)
+        }, (60000*work_time)-(1000*alarm.duration)-30000)
     }, 1000*alarm.duration)
 }
 
@@ -150,6 +161,7 @@ function Rest() {
             audio.pause()
             button2.style.display = 'none'
         }
+        addTime.style.display = 'none'
         set_the_time()
         alarm.play()
         total_time -= work_time
@@ -159,18 +171,38 @@ function Rest() {
             nextRung.textContent = `Next Rung: ${work_time} min`
         }
         timeout = setTimeout(function() {
-            total_time -= rest_time
-            Work()
-        }, 60000*rest_time)
+            beep.play()
+            timeout = setTimeout(function() {
+                total_time -= rest_time
+                Work()
+            }, 30000)
+        }, 60000*rest_time-30000)
         if (total_time == 0) {
             end_ladder()
         }
     }
 }
 
+function extra_minutes() {
+    if (added_time > 0) {
+        timeout = setTimeout(function() {
+            if (added_time == 1) {
+                beep.play()
+            }
+            timeout = setTimeout(function() {
+                added_time -= 1
+                extra_minutes()
+            }, 30000)
+        }, 30000)
+    } else {
+        Rest()
+    }
+}
+
 
 function play() {
     if (count == 0) {
+        added_time = 0
         checker = false
         Box1Out()
         Box2Out()
@@ -214,15 +246,22 @@ button.onclick = function() {
 }
 
 function set_the_time() {
-    let hr = 0
-    let ampm = 'A.M.'
-    let message = 'Break Ends'
-    let extraZero = ''
     Time = new Date()
     nextTime = new Date(Time.getTime()+(60000*rest_time))
     if (lastTime == null) {
         lastTime = new Date(Time.getTime()+(60000*total_time))
     }
+    if (working) {
+        nextTime = new Date(Time.getTime()+(60000*work_time))
+    }
+    update_time()
+}
+
+function update_time() {
+    let hr = 0
+    let ampm = 'A.M.'
+    let message = 'Break Ends'
+    let extraZero = ''
     if (working) {
         message = 'Next Break'
         if (work_time == total_time) {
@@ -234,7 +273,6 @@ function set_the_time() {
         } else {
             nextRung.textContent = `Next Rung: ${work_time+extra_time} min`
         }
-        nextTime = new Date(Time.getTime()+(60000*work_time))
     }
     if (nextTime.getHours() == 0) {
         hr = 12
@@ -250,6 +288,9 @@ function set_the_time() {
         extraZero = ''
     }
     timeText.textContent = `${message} at ${nextTime.getHours()+hr}:${extraZero}${nextTime.getMinutes()} ${ampm}`
+    hr = 0
+    ampm = 'A.M.'
+    extraZero = ''
     if (lastTime.getHours() == 0) {
         hr = 12
     } else if (lastTime.getHours() == 12) {
@@ -264,6 +305,14 @@ function set_the_time() {
     endTime.textContent = `Ladder Finishes at ${lastTime.getHours()+hr}:${extraZero}${lastTime.getMinutes()} ${ampm}`
 }
 
+addTime.onclick = function() {
+    added_time += 1
+    lastTime = new Date(lastTime.getTime()+60000)
+    nextTime = new Date(nextTime.getTime()+60000)
+    update_time()
+}
+
+
 function begin_ladder() {
     working = true
     set_the_time()
@@ -271,12 +320,18 @@ function begin_ladder() {
         audio.play()
         button2.style.display = 'inline-block'
     }
+    addTime.style.display = 'inline-block'
     timeText.style.display = 'inline-block'
     nextRung.style.display = 'inline-block'
     endTime.style.display = 'inline-block'
     timeout = setTimeout(function() {
-        Rest()
-    }, 60000*work_time)
+        if (added_time == 0) {
+            beep.play()
+        }
+        timeout = setTimeout(function() {
+            extra_minutes()
+        }, 30000)
+    }, 60000*work_time-30000)
 }
 
 function end_ladder() {
@@ -292,5 +347,5 @@ function end_ladder() {
     timeText.style.display = 'none'
     nextRung.style.display = 'none'
     endTime.style.display = 'none'
-    endTime
+    addTime.style.display = 'none'
 }
