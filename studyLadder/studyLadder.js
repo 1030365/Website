@@ -12,6 +12,7 @@ let button = document.getElementById("playButton")
 let button2 = document.getElementById("muteButton")
 let button3 = document.getElementById("pauseButton")
 let song_input = document.getElementById("song")
+let song_change = document.getElementById("changeSongButton")
 let timeText = document.getElementById("nextTime")
 let nextRung = document.getElementById("nextRung")
 let endTime = document.getElementById("endTime")
@@ -111,12 +112,13 @@ op1.onchange = function() {
     if (count == 0) {
         music = true
     }
-    reveal_button
+    reveal_button()
 }
 
 op3.onchange = function() {
     op4.checked = false
     q3.style.display="none"
+    song = "Alphawaves.mp3"
     reveal_button()
 }
 
@@ -130,12 +132,12 @@ function Work() {
     working = true
     set_the_time()
     alarm.play()
+    addTime.style.display = 'inline-block'
     timeout = new Timer(function() {
         if (music) {
             audio.play()
             button2.style.display = 'inline-block'
         }
-        addTime.style.display = 'inline-block'
         timeout = new Timer(function() {
             if (added_time == 0) {
                 beep.play()
@@ -149,6 +151,23 @@ function Work() {
 
 function reveal_button() {
     if (count == 1) {
+        if (op1.checked) {
+            if (op4.checked) {
+                if (song_input.value.length < 5) {
+                    song_change.style.display = 'none'
+                } else if ((song_input.value.slice(-4) == '.mp3') || (song_input.value.slice(-4) == '.wav')) {
+                    song_change.style.display = 'inline-block'
+                } else {
+                    song_change.style.display = 'none'
+                }
+            } else if (op3.checked) {
+               song_change.style.display = 'inline-block'
+            } else {
+                song_change.style.display = 'none'
+            }
+        } else {
+            song_change.style.display = 'none'
+        }
         return null
     }
     if (op1.checked) {
@@ -219,6 +238,30 @@ function extra_minutes() {
     }
 }
 
+song_change.onclick = function() {
+    if (!(music)) {
+        music = true
+        song_change.textContent = 'Change Study Music'
+        if (working) {
+            button2.style.display = 'inline-block'
+        }
+    } else {
+        audio.pause()
+    }
+    if (op1.checked && op4.checked) {
+        if (!(song_input.value == '')) {
+            song = URL.createObjectURL(song_input.files[0])
+        }
+    }
+    audio = new Audio(song);
+    audio.loop = true;
+    if (button2.textContent == 'Unmute Study Music') {
+        audio.volume = 0
+    }
+    if (working) {
+        audio.play()
+    }
+}
 
 function play() {
     if (count == 0) {
@@ -285,6 +328,7 @@ button3.onclick = function() {
             endTime.style.display = 'inline-block'
         }
         timeout.resume()
+        reveal_button()
     } else {
         PauseTime = new Date()
         paused = true
@@ -294,6 +338,7 @@ button3.onclick = function() {
         timeText.style.display = 'none'
         nextRung.style.display = 'none'
         endTime.style.display = 'none'
+        song_change.style.display = 'none'
         if (music) {
             audio.pause()
         }
@@ -377,6 +422,8 @@ function begin_ladder() {
     if (music) {
         audio.play()
         button2.style.display = 'inline-block'
+        song_change.textContent = 'Change Study Music'
+        song_change.style.display = 'inline-block'
     }
     addTime.style.display = 'inline-block'
     timeText.style.display = 'inline-block'
@@ -409,4 +456,6 @@ function end_ladder() {
     nextRung.style.display = 'none'
     endTime.style.display = 'none'
     addTime.style.display = 'none'
+    song_change.style.display = 'none'
+    song_change.textContent = 'Add Study Music'
 }
