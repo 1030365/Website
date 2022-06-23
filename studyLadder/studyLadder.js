@@ -118,7 +118,7 @@ op1.onchange = function() {
 op3.onchange = function() {
     op4.checked = false
     q3.style.display="none"
-    song = "Alphawaves.mp3"
+    song = "AlphaWaves.mp3"
     reveal_button()
 }
 
