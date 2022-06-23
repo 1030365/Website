@@ -10,13 +10,16 @@ let REST = document.getElementById("break");
 let TOTAL = document.getElementById("total");
 let button = document.getElementById("playButton")
 let button2 = document.getElementById("muteButton")
+let button3 = document.getElementById("pauseButton")
 let song_input = document.getElementById("song")
 let timeText = document.getElementById("nextTime")
 let nextRung = document.getElementById("nextRung")
 let endTime = document.getElementById("endTime")
 let addTime = document.getElementById("addButton")
 let working = false
+let paused = false
 let Time = new Date()
+let PauseTime = new Date()
 let nextTime = new Date()
 let work_time = 15;
 let extra_time = 5;
@@ -37,6 +40,23 @@ EXTRA.value=extra_time
 REST.value=rest_time
 TOTAL.value=total_time
 let timeout=null
+
+var Timer = function(callback, delay) {
+    var timerId, start, remaining = delay;
+    this.pause = function() {
+        window.clearTimeout(timerId);
+        timerId = null;
+        remaining -= Date.now() - start;
+    };
+    this.resume = function() {
+        if (timerId) {
+            return;
+        }
+        start = Date.now();
+        timerId = window.setTimeout(callback, remaining);
+    };
+    this.resume();
+};
 
 function Box1Out() {
     if (!(parseInt(WORK.value)>0)) {
@@ -110,17 +130,17 @@ function Work() {
     working = true
     set_the_time()
     alarm.play()
-    timeout = setTimeout(function() {
+    timeout = new Timer(function() {
         if (music) {
             audio.play()
             button2.style.display = 'inline-block'
         }
         addTime.style.display = 'inline-block'
-        timeout = setTimeout(function() {
+        timeout = new Timer(function() {
             if (added_time == 0) {
                 beep.play()
             }
-            timeout = setTimeout(function() {
+            timeout = new Timer(function() {
                 extra_minutes()
             }, 30000)
         }, (60000*work_time)-(1000*alarm.duration)-30000)
@@ -170,9 +190,9 @@ function Rest() {
             work_time = total_time-rest_time
             nextRung.textContent = `Next Rung: ${work_time} min`
         }
-        timeout = setTimeout(function() {
+        timeout = new Timer(function() {
             beep.play()
-            timeout = setTimeout(function() {
+            timeout = new Timer(function() {
                 total_time -= rest_time
                 Work()
             }, 30000)
@@ -185,11 +205,11 @@ function Rest() {
 
 function extra_minutes() {
     if (added_time > 0) {
-        timeout = setTimeout(function() {
+        timeout = new Timer(function() {
             if (added_time == 1) {
                 beep.play()
             }
-            timeout = setTimeout(function() {
+            timeout = new Timer(function() {
                 added_time -= 1
                 extra_minutes()
             }, 30000)
@@ -244,6 +264,43 @@ button.onclick = function() {
         end_ladder()
     }
 }
+
+button3.onclick = function() {
+    if (paused) {
+        paused = false
+        button3.textContent = 'Pause Study Ladder'
+        lastTime = new Date(lastTime.getTime()+new Date().getTime()-PauseTime.getTime())
+        nextTime = new Date(nextTime.getTime()+new Date().getTime()-PauseTime.getTime())
+        update_time()
+        timeText.style.display = 'inline-block'
+        if (working) {
+            addTime.style.display = 'inline-block'
+            if (music) {
+                audio.play()
+                button2.style.display = 'inline-block'
+            }
+        }
+        if (!((work_time == total_time) && working)) {
+            nextRung.style.display = 'inline-block'
+            endTime.style.display = 'inline-block'
+        }
+        timeout.resume()
+    } else {
+        PauseTime = new Date()
+        paused = true
+        button3.textContent = 'Unpause Study Ladder'
+        addTime.style.display = 'none'
+        button2.style.display = 'none'
+        timeText.style.display = 'none'
+        nextRung.style.display = 'none'
+        endTime.style.display = 'none'
+        if (music) {
+            audio.pause()
+        }
+        timeout.pause()
+    }
+}
+    
 
 function set_the_time() {
     Time = new Date()
@@ -315,6 +372,7 @@ addTime.onclick = function() {
 
 function begin_ladder() {
     working = true
+    button3.style.display = 'inline-block'
     set_the_time()
     if (music) {
         audio.play()
@@ -324,11 +382,11 @@ function begin_ladder() {
     timeText.style.display = 'inline-block'
     nextRung.style.display = 'inline-block'
     endTime.style.display = 'inline-block'
-    timeout = setTimeout(function() {
+    timeout = new Timer(function() {
         if (added_time == 0) {
             beep.play()
         }
-        timeout = setTimeout(function() {
+        timeout = new Timer(function() {
             extra_minutes()
         }, 30000)
     }, 60000*work_time-30000)
@@ -337,12 +395,15 @@ function begin_ladder() {
 function end_ladder() {
     working = false
     checker = true
-    clearTimeout(timeout)
+    paused = false
+    timeout.pause()
     audio.pause()
     count = 0
     lastTime = null
     button.textContent = 'Play'
     button2.style.display = 'none'
+    button3.style.display = 'none'
+    button3.textContent = 'Pause Study Ladder'
     reveal_button()
     timeText.style.display = 'none'
     nextRung.style.display = 'none'
