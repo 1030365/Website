@@ -10,7 +10,7 @@ body {
     background-color: #4696af;
     text-align: center
 }
-p {
+p, h1 {
     border: 3px outset #3db385;
     background-color: #3db385;
     display: inline-block;
@@ -20,13 +20,18 @@ span {
     background-color: white;
     border-radius: 5px
 }
+#ladderStats {
+    border: 3px outset #fca103;
+    background-color: #fca103;
+    display: inline-block;
+}
 </style>
 		<meta charset="utf-8">
 		<title>Study Ladder</title>
 	</head>
 	<body>
 		<!-- content starts below here -->
-                <h1>Study Ladder</h1>
+                <h1>Study Ladder</h1><br>
                 <p>How long (in minutes) do you want your first study session to be?&nbsp;</p>
                 
                 <br><input type="text" id="start" onfocusout="Box1Out()"><br>
@@ -56,9 +61,12 @@ span {
                 <br><button style="display: none" id='addButton'>Add 1 Minute To This Session</button>
                 <br><button style="display: none" id='changeSongButton'>Add Study Music</button>
                 <br><button style="display: none" id='muteButton'>Mute Study Music</button>
-                <br><br><div id="nextTime" style="display: none">Next Alarm: </div>
-                <br><div id="nextRung" style="display: none">Next Rung: </div>
-                <br><div id="endTime" style="display: none">Ladder Finishes at </div>
+                <br><br>
+                <div id="ladderStats" style="display: none">
+                <div id="nextTime">Next Alarm: </div>
+                <div id="nextRung" style="display: none">Next Rung: </div>
+                <div id="endTime" style="display: none">Ladder Finishes at </div>
+                </div>
     <footer style="text-align: center;">
     <a id="vLink1"><strong> HTML </strong> Valid! </a>
     <a id="vLink2"><strong> CSS </strong> Valid! </a>

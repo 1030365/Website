@@ -17,6 +17,7 @@ let timeText = document.getElementById("nextTime")
 let nextRung = document.getElementById("nextRung")
 let endTime = document.getElementById("endTime")
 let addTime = document.getElementById("addButton")
+let ladderStats = document.getElementById("ladderStats")
 let working = false
 let paused = false
 let Time = new Date()
@@ -315,17 +316,13 @@ button3.onclick = function() {
         lastTime = new Date(lastTime.getTime()+new Date().getTime()-PauseTime.getTime())
         nextTime = new Date(nextTime.getTime()+new Date().getTime()-PauseTime.getTime())
         update_time()
-        timeText.style.display = 'inline-block'
+        ladderStats.style.display = 'inline-block'
         if (working) {
             addTime.style.display = 'inline-block'
             if (music) {
                 audio.play()
                 button2.style.display = 'inline-block'
             }
-        }
-        if (!((work_time == total_time) && working)) {
-            nextRung.style.display = 'inline-block'
-            endTime.style.display = 'inline-block'
         }
         timeout.resume()
         reveal_button()
@@ -335,9 +332,7 @@ button3.onclick = function() {
         button3.textContent = 'Unpause Study Ladder'
         addTime.style.display = 'none'
         button2.style.display = 'none'
-        timeText.style.display = 'none'
-        nextRung.style.display = 'none'
-        endTime.style.display = 'none'
+        ladderStats.style.display = 'none'
         song_change.style.display = 'none'
         if (music) {
             audio.pause()
@@ -426,8 +421,8 @@ function begin_ladder() {
         song_change.style.display = 'inline-block'
     }
     addTime.style.display = 'inline-block'
-    timeText.style.display = 'inline-block'
-    nextRung.style.display = 'inline-block'
+    ladderStats.style.display = 'inline-block'
+    nextRung.style.display = 'block'
     endTime.style.display = 'inline-block'
     timeout = new Timer(function() {
         if (added_time == 0) {
@@ -452,9 +447,7 @@ function end_ladder() {
     button3.style.display = 'none'
     button3.textContent = 'Pause Study Ladder'
     reveal_button()
-    timeText.style.display = 'none'
-    nextRung.style.display = 'none'
-    endTime.style.display = 'none'
+    ladderStats.style.display = 'none'
     addTime.style.display = 'none'
     song_change.style.display = 'none'
     song_change.textContent = 'Add Study Music'
