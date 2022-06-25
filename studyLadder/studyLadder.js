@@ -18,6 +18,7 @@ let nextRung = document.getElementById("nextRung")
 let endTime = document.getElementById("endTime")
 let addTime = document.getElementById("addButton")
 let ladderStats = document.getElementById("ladderStats")
+//other info
 let working = false
 let paused = false
 let Time = new Date()
